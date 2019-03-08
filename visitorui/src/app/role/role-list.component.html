@@ -1,0 +1,54 @@
+<with-navbar></with-navbar>
+
+<div class="container" style="padding-left:45px;">  
+    <form id="rolelist-form">  
+    <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="header">
+                  <h4 class="title">Role List</h4>
+                  <p class="category">list of all role</p>
+                </div>
+                <div class="row">
+                  <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="form-group">
+                      <input type="text" id="txtsearch" class="form-control border-input" placeholder="Search">
+                    </div>
+                  </div>
+                  <div class="col-xs-4 col-sm-4 col-md-4">
+                    <div class="form-group">
+                      <input type="submit" value="Search" class="btn btn-info btn-fill btn-wd" > &nbsp;
+                      <input type="submit" value="Add New" class="btn btn-info btn-fill btn-wd" routerLink="createrole">
+                    </div>
+                  </div>
+                </div>
+                <div class="content table-responsive table-full-width">
+                  <table class="table table-hover">
+                    <thead>                     
+                      <th>Role</th>
+                      <th>Role Type</th>                    
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let role of roleList | paginate: config"> 
+                            <td>{{role.name}}</td>
+                            <td>{{role.type=="PDF"?"Pre-defined":'User-defined'}}</td> 
+                            <td><button class="btn"><a [routerLink]="['edit',role.id]" style="cursor:pointer;" title="Click here to edit"><i class="fa fa-edit" aria-hidden="true"></i></a></button></td>
+                        </tr>             
+                      </tbody>
+                  </table>
+                  <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ </form>
+</div>
+  
+
+
+
+

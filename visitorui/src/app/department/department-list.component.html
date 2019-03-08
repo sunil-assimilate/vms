@@ -1,0 +1,39 @@
+<with-navbar></with-navbar>
+
+<div class="container" style="padding-left:45px;">
+  <form id="departmentlist-form" class="form">
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="header">
+                <h4 class="title">Department List</h4>
+                <p class="category">list of all department</p>
+              </div>
+             
+              <div class="content table-responsive table-full-width">
+                <table class="table table-hover">
+                  <thead>
+                    <th>Code </th>  
+                    <th>Name</th>
+                                                        
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let dempList of departmentList">
+                     <td>{{dempList.code}}</td>  
+                      <td>{{dempList.name}}</td>
+                                         
+                    </tr>
+                  </tbody>
+                </table>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </form>
+</div>

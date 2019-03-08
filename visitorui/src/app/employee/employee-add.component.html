@@ -1,0 +1,97 @@
+<with-navbar></with-navbar>
+<div class="container" style="padding-left:45px;">
+  <form #createEmployeeForm="ngForm" (ngSubmit)="createEmployee(employee)">
+    <div class="panel-heading">
+      <h3 class="panel-title">Add Employee</h3>
+      <div class="panel-body">
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#single">Single Entry</a></li>
+          <li><a data-toggle="tab" href="#multiple">Bulk Import</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="single">
+            <div class="panel-body">
+              <div class="row form-group">
+                <label class="col-lg-2 ">First Name<span style="color:red">*</span></label>
+                <div class="col-lg-4 ">
+                  <input id="txtfirstName" class="form-control border-input" placeholder="First Name" type="text"
+                    name="firstName" [(ngModel)]="employee.firstName" #firstName="ngModel" required />
+                    <span class="help-block" *ngIf="firstName.invalid && firstName.touched" style="color:red">First Name is
+                      required</span>
+                </div>
+              </div>
+              <div class="row form-group">
+                <label class="col-lg-2 ">Last Name<span style="color:red">*</span></label>
+                <div class="col-lg-4 ">
+                  <input required id="txtlastName" name="lastName" class="form-control border-input" placeholder="Last Name"
+                    type="text" [(ngModel)]="employee.lastName" #lastName="ngModel" />
+                    <span class="help-block" *ngIf="lastName.invalid && lastName.touched" style="color:red">Last Name is
+                      required</span>
+                </div>
+              </div>
+              <div class="row form-group">
+                <label class="col-lg-2 ">Contact Number<span style="color:red">*</span></label>
+                <div class="col-lg-4 ">
+                  <input required id="txtcell" class="form-control border-input" placeholder="Contect Number" type="text"  (keypress)="numberOnly($event)"
+                    name="cell" [(ngModel)]="employee.cell" #cell="ngModel" maxlength="10" />
+                    <span class="help-block" *ngIf="cell.invalid && cell.touched" style="color:red">Contact Number is
+                      required</span>   
+                </div>
+              </div>
+              <div class="row form-group">
+                <label class="col-lg-2 ">Email<span style="color:red">*</span></label>
+                <div class="col-lg-4 ">
+                  <input email required id="txtemail" class="form-control border-input" placeholder="Email" type="text" name="email"
+                    type="text" [(ngModel)]="employee.email" #email="ngModel" />
+                    <span class="help-block" *ngIf="email.errors?.required && email.touched" style="color:red">Email is
+                      invalid</span>
+                      
+                </div>
+              </div> 
+              <div class="row form-group">
+                <label class="col-lg-2 ">Department<span style="color:red">*</span></label>
+                <div class="col-lg-4 ">
+
+                  <select required id="departmentid" class="form-control border-input" name="department"
+                    #departmentid="ngModel" [(ngModel)]="employee.department" (change)="selected()">
+                    <option [ngValue]="null">Select Department</option>
+                    <option *ngFor="let department of departmentList" [ngValue]="department">{{department.name}}
+                    </option>
+                  </select>
+                  <span class="help-block" *ngIf="departmentid.touched && departmentid.errors?.required" style="color:red">
+                    Department is required
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <button type="submit" id="btnSave" class="btn btn-info btn-fill btn-wd"
+                  [disabled]='!createEmployeeForm.valid'>Save</button>
+                &nbsp;
+                <button class="btn btn-info btn-fill btn-wd" (click)="resetControl()">Reset</button>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="multiple">
+            <div class="row form-group" style="padding-top:25px">
+              <label>For downloading the excel format</label>&nbsp;&nbsp;<a style="font-weight: bold"
+                href="../../assets/sampleexcel/employee.xlsx" download="employee.xlsx">Click here</a>
+            </div>
+            <div class="row form-group">
+              <label style="color:black; font-weight: bold;"><span style="color:red;">*</span> Choose Excel File (.xlsx
+                files only): </label>
+              <div class="col-lg-10">
+                <input type="file" class="form-control" #fileInput
+                  style="text-align:center;width:100%; background-color:white;height:25%" />
+              </div>
+            </div>
+            <div class="row form-group">
+              <button type="button" class="btn btn-info btn-fill btn-wd" id="btnSaveExcel" (click)="importEmployee()" >Import</button> &nbsp;
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

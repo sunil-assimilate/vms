@@ -1,0 +1,77 @@
+<with-navbar></with-navbar>
+<div class="container" style="padding-left:45px;">
+  <form id="visitorlist-form">
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="header">
+                <h4 class="title">Visitor List</h4>
+
+              </div>
+              <div class="row">
+                <form>
+                  <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="form-group">
+                      <input type="text" id="txtsearch" name="searchText" [(ngModel)]="searchText"
+                        class="form-control border-input" placeholder="Search">
+                    </div>
+                  </div>
+                  <div class="col-xs-4 col-sm-4 col-md-4">
+                    <div class="form-group">
+                      <input type="submit" value="Search" (click)="searchVisitor()"
+                        class="btn btn-info btn-fill btn-wd"> &nbsp;
+                      <input type="submit" value="Add New" class="btn btn-info btn-fill btn-wd"
+                        routerLink="createvisitor">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="content table-responsive table-full-width">
+
+                <table class="table mb-0 table-striped" id="vList" style="width:100%">
+                  <thead>
+
+                    <th>Name</th>
+                    <th>Contact No</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>To Meet</th>
+                    <th>Purpose</th>
+                    <th>In-Time</th>
+                    <th>Out-Time</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let visitor of visitorList|paginate: pager">
+                      <td>{{visitor.firstName}}&nbsp;{{visitor.lastName}}</td>
+                      <td>{{visitor.contactNumber}}</td>
+                      <td>{{visitor.email}}</td>
+                      <td>{{visitor.department.name}}</td>
+                      <td> {{visitor.toMeet.name }}</td>
+                      <td>{{visitor.purpose}}</td>
+                      <td>{{visitor.checkIn |date:'MM/dd/yyyy  h:mm a'}}</td>
+                      <td> <button class="btn" *ngIf="visitor.checkOut.includes('0001')"
+                          (click)="checkOut(visitor.id)">Check Out</button>
+                        {{ visitor.checkOut.includes('0001') ? '' :   visitor.checkOut|date:'MM/dd/yyyy h:mm a'}}</td>
+                      <td><button class="btn"><a [routerLink]="['detail',visitor.id]" style="cursor:pointer;"
+                            title="Click here to view detail"><i class="fa fa-info" aria-hidden="true"></i></a></button>
+                        <button class="btn"><a [routerLink]="['edit',visitor.id]" style="cursor:pointer;"
+                            title="Click here to edit"><i class="fa fa-edit" aria-hidden="true"></i></a></button>
+
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

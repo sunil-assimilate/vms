@@ -1,0 +1,75 @@
+<with-navbar></with-navbar>
+
+<div class="container" style="padding-left:45px;">
+  <form #editUserForm="ngForm" (ngSubmit)="editUser(user)">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"> Edit User</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="row form-group">
+          <label class="col-lg-2">First Name<span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <input required id="txtFirstName" name="firstName" class="form-control border-input"
+              placeholder="First Name" type="text" [(ngModel)]="user.firstName" #firstName="ngModel" />
+            <span class="help-block" *ngIf="firstName.invalid && firstName.touched" style="color:red">First Name is
+              required</span>
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-lg-2">Last Name</label>
+          <div class="col-lg-4 ">
+            <input id="txtlastName" name="lastName" class="form-control border-input" placeholder="Last Name"
+              type="text" [(ngModel)]="user.lastName" #lastName="ngModel" />
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-lg-2">User Name <span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <input required id="txtuserName" name="userName" class="form-control border-input" placeholder="User Name"
+              type="text" [(ngModel)]="user.userName" #userName="ngModel" />
+            <span class="help-block" *ngIf="userName.invalid && userName.touched" style="color:red">User Name is
+              required</span>
+          </div>
+        </div>
+
+       
+        <div class="row form-group">
+          <label class="col-lg-2"> Email</label>
+          <div class="col-lg-4 ">
+            <input email id="txtEmail" name="email" class="form-control border-input" placeholder="Email" type="text"
+              [(ngModel)]="user.email" #email="ngModel" />
+              <span class="help-block" *ngIf="email.errors?.email && email.touched" style="color:red">
+                Email is invalid
+              </span>
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-lg-2"> Contact Number</label>
+          <div class="col-lg-4 ">
+            <input id="txtcontactNumber" name="contactNumber" class="form-control border-input"
+              placeholder="Contact Number" type="text" [(ngModel)]="user.contactNumber" #contactNumber="ngModel" />
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-lg-2">Role<span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <select required id="roleId" class="form-control border-input" name="role" [(ngModel)]="user.role"
+            #role="ngModel" [compareWith]="compareFn">
+            <option [ngValue]="null">Select Role</option>
+            <option *ngFor="let role of roleList" [ngValue]="role">
+              {{role.name}}
+            </option>
+          </select>
+          <span class="help-block" *ngIf="role.touched && role.errors?.required" style="color:red">
+            Role is required
+          </span>
+          </div>
+        </div>
+        <input type="submit" value="Save" class="btn btn-info btn-fill btn-wd" [disabled]='!editUserForm.valid'> &nbsp;
+        <input type="button" value="Cancel" class="btn btn-info btn-fill btn-wd" (click)="goBack()">
+      </div>
+    </div>
+  </form>
+</div>

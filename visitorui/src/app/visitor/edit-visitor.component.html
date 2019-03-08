@@ -1,0 +1,162 @@
+<with-navbar></with-navbar>
+ 
+<div class="container" style="padding-left:45px;">
+
+
+  <div class="panel-heading">
+    <h3 class="panel-title;text-align:center">Edit Visitor</h3> 
+  </div>
+  
+<form #createVisitorForm="ngForm" (ngSubmit)="updateVisitor()">
+  <div class="panel panel-flat">
+    <div class="panel-body">      
+      <div class="row form-group">
+          <label class="col-lg-2">Contact Number<span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <input id="txtcontactno" (keypress)="numberOnly($event)"  class="form-control border-input" placeholder="Contact Number" type="text"  [(ngModel)]="visitor.contactNumber" ngxPhoneMask #contactNumber="ngModel" name="contactNumber"/>
+            <span class="help-block" *ngIf="contactNumber.invalid && contactNumber.touched" style="color:red">Contact Number is
+              required</span>
+          </div>
+        <label class="col-lg-2 "><b>Email:</b> </label>
+        <div class="col-lg-4 ">
+          <input id="txtEmail" class="form-control border-input" placeholder="Email" type="email"  [(ngModel)]="visitor.email" #email="ngModel" email
+            name="email"/>
+          <span class="help-block" *ngIf="email.value !== '' && email.untouched && email.invalid" style="color:red">Invalid Email</span>
+        </div>     
+      </div>
+      <div class="row form-group">
+          <label class="col-lg-2"><b>First Name</b><span style="color:red">*</span> </label>
+          <div class="col-lg-4 ">
+            <input id="txtfirstname" class="form-control border-input" placeholder="First Name" type="text"  [(ngModel)]="visitor.firstName" #firstName="ngModel" name="firstName"/>
+            <span class="help-block" *ngIf="firstName.invalid && firstName.touched" style="color:red">First Name is
+              required</span>
+       
+          </div>
+        <label class="col-lg-2"><b>Last Name:</b><span style="color:red">*</span> </label>
+        <div class="col-lg-4 ">
+          <input id="txtlastname" class="form-control border-input" placeholder="Last Name" type="text"  [(ngModel)]="visitor.lastName" #lastName="ngModel" name="lastName"/>
+        </div>     
+      </div>
+
+      <div class="row form-group">
+          <label class="col-lg-2 "><b>Country</b> <span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+             
+              <select required id="country" class="form-control border-input" name="country" [(ngModel)]="visitor.country"  (change)="bindStates($event)"
+              #country="ngModel"  [compareWith]="compareFn">
+                  <option [ngValue]="null">Select Country</option>
+                  <option *ngFor="let country of countries" [ngValue]="country">
+                    {{country.name}}
+                  </option>
+                </select>
+          </div>
+        
+          <label class="col-lg-2"><b>State:</b> </label>
+          <div class="col-lg-4 ">
+            <select id="state" class="form-control border-input" name="state" [(ngModel)]="visitor.state" #state="ngModel" [compareWith]="compareFn">
+                <option [ngValue]="null">Select State</option>
+                <option *ngFor="let state of states" [ngValue]="state">
+                  {{state.name}}
+                </option>
+              </select>
+        </div>     
+      </div>
+      <div class="row form-group">
+          <label class="col-lg-2"><b>Address</b> <span style="color:red">*</span></label>
+          <div class="col-lg-4 ">             
+              <textarea class="form-control border-input" id="txtaddress" [(ngModel)]="visitor.address" #address="ngModel" rows="2" name="address"></textarea>
+          </div>
+        <label class="col-lg-2"><b>Zip Code:</b> </label>
+        <div class="col-lg-4 ">
+            <input id="txtzipcode" class="form-control border-input " placeholder="Zip Code" [(ngModel)]="visitor.zipCode" #zipCode="ngModel" type="text" name="zipCode" />
+        </div>     
+      </div>
+       <div class="row form-group">
+          <label class="col-lg-2"><b>Department:</b> <span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+              <select id="department" class="form-control border-input" name="department" [(ngModel)] = "visitor.department" #department="ngModel"  [compareWith]="compareFn">
+                  <option  [ngValue]="null">Select Department</option>
+                  <option *ngFor="let department of departments" [ngValue]="department">
+                    {{department.name}} 
+                    </option>
+                </select>
+          </div>
+          <span class="help-block" *ngIf="department.invalid && department.touched" style="color:red">Department is
+            required</span> 
+     
+
+       <label class="col-lg-2"><b>To Meet:</b> <span style="color:red">*</span></label>
+        <div class="col-lg-4 ">
+            <select id="ddlemployee" class="form-control border-input" [(ngModel)] = "visitor.toMeet" name="employee" #employee="ngModel"  [compareWith]="compareFn">
+                <option  [ngValue]="null">Select Employee</option>
+                <option *ngFor="let employee of employees" [ngValue]="employee">
+                    {{employee.name}} 
+                  </option>
+              </select>
+        </div>  
+        
+        <span class="help-block" *ngIf="employee.invalid && employee.touched" style="color:red">Referenced Employee is
+          required</span>
+   
+    </div>
+    <div class="row form-group">
+        <label class="col-lg-2"><b>Photo Identity</b> </label>
+        <div class="col-lg-4 ">
+            <select id="ddlemployee" class="form-control border-input" [(ngModel)] = "visitor.photoIdType" name="photoIdType" #photoIdentityType="ngModel" [compareWith]="compareFn">
+                <option  [ngValue]="null">Select Photo Identity Type</option>
+                <option *ngFor="let photoIdentityType of photoIdTypes" [ngValue]="photoIdentityType">
+                    {{photoIdentityType.name}}
+                  </option>  
+              </select>
+              <span class="help-block" *ngIf="photoIdentityType.invalid && photoIdentityType.touched" style="color:red">Photo Identity type is
+                required</span>
+        </div>
+
+      
+      <label class="col-lg-2"><b>Identity Number:</b> </label>
+      <div class="col-lg-4 ">
+          <input id="txtidentityno" class="form-control border-input" placeholder="Indentity Number" [(ngModel)]="visitor.identityNumber" #identityNumber="ngModel" type="text" name="identityNumber" />
+          <span class="help-block" *ngIf="identityNumber.invalid && identityNumber.touched" style="color:red">Identity Number is
+            required</span>
+      </div>     
+    </div> 
+
+    <div class="row form-group">
+      <label class="col-lg-2"><b>Location:</b> </label>
+      <div class="col-lg-4 ">
+        <select id="location" required class="form-control border-input" [(ngModel)]="visitor.location"
+          name="location" #location="ngModel" [compareWith]="compareFn">
+          <option [ngValue]="null">Select Location </option>
+          <option *ngFor="let location of locations" [ngValue]="location">
+            {{location.name}}
+          </option>
+        </select>
+        <span class="help-block" *ngIf="location.invalid && location.touched"
+        style="color:red"> Location is required</span>
+      </div>
+    </div>
+
+     
+    <div class="row form-group">
+        <label class="col-lg-2"><b>Purpose</b> <span style="color:red">*</span></label>
+        <div class="col-lg-4 ">
+          <textarea class="form-control border-input" id="txtperpose" rows="2"  [(ngModel)]="visitor.purpose" #purpose="ngModel" name="purpose"></textarea>
+
+        </div>
+      <label class="col-lg-2 "><b>comments:</b> </label>
+      <div class="col-lg-4 ">         
+          <textarea class="form-control border-input" id="comments" rows="2"  [(ngModel)]="visitor.comment" #comments="ngModel" name="comment"></textarea>
+
+      </div>     
+    </div> 
+
+    <div class="row form-group">       
+        <div class="col-lg-12">
+            <input id="btnSave" type="submit" class="btn btn-info btn-fill btn-wd" type="submit" value="Update" /> &nbsp;
+             <input id="btnReset" type="button" class="btn btn-info btn-fill btn-wd" type="button" value="Cancel" (click)="cancel()" />
+        </div>
+    </div>  
+  </div>
+  </div>
+  </form>
+</div>

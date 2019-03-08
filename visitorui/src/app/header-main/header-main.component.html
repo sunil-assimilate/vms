@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+        <div class="panel-heading">
+            <h1 class="header-h1"> Visitor Registration</h1>
+          </div>
+    </div>
+  <div class="container-fluid">    
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="ti-settings"></i>
+            <p>{{profileName}}</p>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">View Profile</a></li>
+            <li><a href="#" routerLink="/changepassword" >Change Password</a></li>
+            <li><a href="#" (click)="!!logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div> 
+</nav>

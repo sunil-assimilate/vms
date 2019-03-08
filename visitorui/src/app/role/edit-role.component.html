@@ -1,0 +1,63 @@
+<with-navbar></with-navbar>
+<div class="container" style="padding-left:45px;">
+	<form #editroleForm="ngForm" (ngSubmit)="editrole(role)">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"> Edit Role</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row form-group">
+					<label class="col-lg-2 control-label ">Role<span style="color:red">*</span></label>
+					<div class="col-lg-4">						
+						<input required id="txtrole" name="role" class="form-control border-input"
+						placeholder="Role" type="text" [(ngModel)]="role.name" #name="ngModel" />
+						<span class="help-block" *ngIf="name.invalid && name.touched" style="color:red">role is
+								required</span>
+					</div>
+				</div>
+
+				<div class="row form-group" style="display:none">
+					<div class="col-lg-6 ">
+						<table class="table">
+							<tr>
+								<th>Pages</th>
+								<th>Read</th>
+								<th>Write</th>
+							</tr>
+							<tr>
+								<td><input type="label" class="form-control" id="user">User</td>
+								<td><input type="checkbox" class="form-check-input" id="add1"></td>
+								<td><input type="checkbox" class="form-check-input" id="edit1"></td>
+
+							</tr>
+							<tr>
+								<td><input type="label" class="form-control" id="employee">Employee</td>
+								<td><input type="checkbox" class="form-check-input" id="add2"></td>
+								<td><input type="checkbox" class="form-check-input" id="edit2"></td>
+
+							</tr>
+							<tr>
+								<td><input type="label" class="form-control" id="dept">Department</td>
+								<td><input type="checkbox" class="form-check-input" id="add2"></td>
+								<td><input type="checkbox" class="form-check-input" id="edit2"></td>
+
+							</tr>
+							<tr>
+								<td><input type="label" class="form-control" id="visitor">Visitor</td>
+								<td><input type="checkbox" class="form-check-input" id="add"></td>
+								<td><input type="checkbox" class="form-check-input" id="edit"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-xs-10 col-sm-10 col-md-10">
+              <input type="submit" value="Save" class="btn btn-info btn-fill btn-wd" [disabled]='!editroleForm.valid'> &nbsp;              
+              <!-- <input type="button" value="Reset" class="btn btn-info btn-fill btn-wd" (click)="resetControl()"> &nbsp; -->
+              <input type="button" value="Cancel" class="btn btn-info btn-fill btn-wd" (click)="goBack()">
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

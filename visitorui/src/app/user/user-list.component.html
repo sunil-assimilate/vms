@@ -1,0 +1,61 @@
+<with-navbar></with-navbar>
+<div class="container" style="padding-left:45px;">
+  <form id="userlist-form" class="form">
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="header">
+                <h4 class="title">User List</h4>
+                <p class="category">list of all User</p>
+              </div>
+              <div class="row">
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                  <div class="form-group">
+                    <input type="text" id="txtsearch" class="form-control border-input" placeholder="Search"
+                      [(ngModel)]="userSearch.text" #text="ngModel" name="text">
+                  </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                  <div class="form-group">
+                    <input type="button" value="Search" class="btn btn-info btn-fill btn-wd" (click)="searchUser()">
+                    &nbsp;
+                    <input type="submit" value="Add New" class="btn btn-info btn-fill btn-wd" routerLink="createuser">
+                  </div>
+                </div>
+              </div>
+              <div class="content table-responsive table-full-width">
+                <table class="table table-hover">
+                  <thead>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Contact Number</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let usrList of userList | paginate: pager">
+                      <td>{{usrList.firstName}} </td>
+                      <td>{{usrList.lastName}} </td>
+                      <td>{{usrList.userName}}</td>
+                      <td>{{usrList.email}}</td>
+                      <td>{{usrList.contactNumber}}</td>
+                      <td><button class="btn"><a [routerLink]="['edit',usrList.id]" style="cursor:pointer;"
+                            title="Click here to edit"><i class="fa fa-edit" aria-hidden="true"></i></a></button></td>
+                      <td><button class="btn"><a href="#" (click)="!!resetPassword(usrList.id)"
+                            title="Click here to reset password"><i class="fa fa-unlock"
+                              aria-hidden="true"></i></a></button></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

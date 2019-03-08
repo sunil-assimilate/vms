@@ -1,0 +1,183 @@
+<with-navbar></with-navbar>
+<div class="container" style="padding-left:45px;">
+
+  <form #createVisitorForm="ngForm" (ngSubmit)="addVisitor(visitor)">
+    <div class="panel-heading">
+      <h3 class="panel-title;text-align:center"> Add Visitor</h3>
+    </div>
+    <div class="panel panel-flat">
+      <div class="panel-body">
+        <div class="row form-group">
+          <label class="col-lg-2">Contact Number<span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <input required id="txtcontactno" (keypress)="numberOnly($event)" ngxPhoneMask class="form-control border-input" placeholder="Contact Number" type="text"
+              [(ngModel)]="visitor.contactNumber" #contactNumber="ngModel" name="contactNumber" />
+            <span class="help-block" *ngIf="contactNumber.invalid && contactNumber.touched" style="color:red">Contact
+              Number is
+              required</span>
+          </div>
+
+
+          <label class="col-lg-2 "><b>Email:</b> </label>
+          <div class="col-lg-4 ">
+            <input id="txtEmail" class="form-control border-input" placeholder="Email" type="email"
+              [(ngModel)]="visitor.email" #email="ngModel" name="email" email />
+            <span class="help-block" *ngIf="email.value !== '' && email.untouched && email.invalid" style="color:red">Invalid email</span>
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-lg-2"><b>First Name</b><span style="color:red">*</span> </label>
+          <div class="col-lg-4 ">
+            <input id="txtfirstname" required class="form-control border-input" placeholder="First Name" type="text"
+              [(ngModel)]="visitor.firstName" #firstName="ngModel" name="firstName" />
+            <span class="help-block" *ngIf="firstName.invalid && firstName.touched" style="color:red">First Name is
+              required</span>
+
+          </div>
+          <label class="col-lg-2"><b>Last Name:</b><span style="color:red">*</span> </label>
+          <div class="col-lg-4 ">
+            <input id="txtlastname" required class="form-control border-input" placeholder="Last Name" type="text"
+              [(ngModel)]="visitor.lastName" #lastName="ngModel" name="lastName" />
+              <span class="help-block" *ngIf="lastName.invalid && lastName.touched" style="color:red">Last Name is
+                required</span>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <label class="col-lg-2 "><b>Country</b> <span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <select required id="country" class="form-control border-input" name="country" [(ngModel)]="visitor.country"
+              [attr.disabled]="true" (change)="bindStates($event)" #country="ngModel">
+              <option [ngValue]="null">Select Country</option>
+              <option *ngFor="let country of countries" [ngValue]="country">
+                {{country.name}}
+              </option>
+            </select>
+          </div>
+
+          <label class="col-lg-2"><b>State:</b><span style="color:red">*</span> </label>
+          <div class="col-lg-4 ">
+            <select id="state" class="form-control border-input" name="state" [(ngModel)]="visitor.state"
+              #state="ngModel">
+              <option [ngValue]="null">Select State</option>
+              <option *ngFor="let state of states" [ngValue]="state">
+                {{state.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-lg-2"><b>Address</b> <span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <textarea class="form-control border-input" id="txtaddress" [(ngModel)]="visitor.address" #address="ngModel"
+              rows="2" name="address"></textarea>
+          </div>
+          <label class="col-lg-2"><b>Zip Code:</b> </label>
+          <div class="col-lg-4 ">
+            <input id="txtzipcode" class="form-control border-input " placeholder="Zip Code"
+              [(ngModel)]="visitor.zipCode" #zipCode="ngModel" type="text" name="zipCode" />
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-lg-2"><b>Department:</b> <span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <select required id="department" class="form-control border-input" name="department"
+              [(ngModel)]="visitor.department" #department="ngModel">
+              <option [selected]="true" [ngValue]="null">Select Department</option>
+              <option *ngFor="let department of departments" [ngValue]="department">
+                {{department.name}}
+              </option>
+            </select>
+            <span class="help-block" *ngIf="department.invalid && department.touched" style="color:red">Department is
+              required</span>
+          </div>
+        
+
+
+          <label class="col-lg-2"><b>To Meet:</b> <span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <select id="ddlemployee" required class="form-control border-input" [(ngModel)]="visitor.toMeet"
+              name="employee" #employee="ngModel">
+              <option [ngValue]="null">Select Employee</option>
+              <option *ngFor="let employee of employees" [ngValue]="employee">
+                {{employee.name}}
+              </option>
+            </select>
+            <span class="help-block" *ngIf="employee.invalid && employee.touched" style="color:red">To Meet is
+              required</span>
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-lg-2"><b>Photo Identity Type</b> </label>
+          <div class="col-lg-4 ">
+            <select id="ddlemployee" required class="form-control border-input" [(ngModel)]="visitor.photoIdType"
+              name="photoIdType" #photoIdentityType="ngModel">
+              <option [ngValue]="null">Select Photo Identity Type</option>
+              <option *ngFor="let photoIdentityType of photoIdTypes" [ngValue]="photoIdentityType">
+                {{photoIdentityType.name}}
+              </option>
+            </select>
+            <span class="help-block" *ngIf="photoIdentityType.invalid && photoIdentityType.touched"
+              style="color:red">Photo Identity type is
+              required</span>
+          </div>
+
+
+          <label class="col-lg-2"><b>Indentity Number:</b> </label>
+          <div class="col-lg-4 ">
+            <input id="txtidentityno" required class="form-control border-input" placeholder="Identity Number"
+              [(ngModel)]="visitor.identityNumber" #identityNumber="ngModel" type="text" name="identityNumber" />
+            <span class="help-block" *ngIf="identityNumber.invalid && identityNumber.touched" style="color:red">Identity
+              Number is
+              required</span>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <label class="col-lg-2"><b>Location:</b> </label>
+          <div class="col-lg-4 ">
+            <select id="location" required class="form-control border-input" [(ngModel)]="visitor.Location"
+              name="location" #location="ngModel">
+              <option [ngValue]="null">Select Location </option>
+              <option *ngFor="let location of locations" [ngValue]="location">
+                {{location.name}}
+              </option>
+            </select>
+            <span class="help-block" *ngIf="location.invalid && location.touched"
+            style="color:red"> Location is required</span>
+          </div>
+        </div>
+
+
+        <div class="row form-group">
+          <label class="col-lg-2"><b>Purpose</b> <span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <textarea required class="form-control border-input" id="purpose" rows="2" [(ngModel)]="visitor.purpose"
+              #purpose="ngModel" name="purpose"></textarea>
+            <span class="help-block" *ngIf="purpose.invalid && purpose.touched" style="color:red">Purpose is
+              required</span>
+          </div>
+        
+        <label class="col-lg-2 "><b>Comments:</b> </label>
+        <div class="col-lg-4 ">
+          <textarea class="form-control border-input" id="comment" rows="2" [(ngModel)]="visitor.comment"
+            #comment="ngModel" name="comment"></textarea>
+
+        </div>
+
+      </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-lg-12">
+          <input id="btnSave" type="submit" class="btn btn-info btn-fill btn-wd" type="submit" value="Save"
+            [disabled]='!createVisitorForm.valid' /> &nbsp;
+          <input id="btnReset" type="button" class="btn btn-info btn-fill btn-wd" type="button" value="Reset"
+            (click)="resetControl()" />
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+</div>

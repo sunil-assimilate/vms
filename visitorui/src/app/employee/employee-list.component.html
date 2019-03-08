@@ -1,0 +1,61 @@
+<with-navbar></with-navbar>
+
+<div class="container" style="padding-left:45px;">
+  <form id="employeelist-form" class="form">
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="header">
+                <h4 class="title">Employee List</h4>
+                <p class="category">list of all employee</p>
+              </div>
+              <div class="row">
+                <form>
+                  <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="form-group">
+                      <input type="text" id="txtsearch" name="searchText" [(ngModel)]="employeeSearch.text"
+                        class="form-control border-input" placeholder="Search">
+                    </div>
+                  </div>
+                  <div class="col-xs-4 col-sm-4 col-md-4">
+                    <div class="form-group">
+                      <input type="submit" value="Search" (click)="loadEmployeeList()"
+                        class="btn btn-info btn-fill btn-wd"> &nbsp;
+                      <input type="submit" value="Add New" class="btn btn-info btn-fill btn-wd"
+                        routerLink="createvisitor">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="content table-responsive table-full-width">
+                <table class="table table-hover">
+                  <thead>
+                    <th>FirstName</th>
+                    <th>Last Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let emplist of employeeList | paginate: config">
+                      <td>{{emplist.firstName}}</td>
+                      <td>{{emplist.lastName}}</td>
+                      <td>{{emplist.cell}}</td>
+                      <td>{{emplist.email}}</td>    
+                      <td>{{emplist.department.name}}</td>   
+                      <td><button class="btn"><a [routerLink]="['edit',emplist.id]" style="cursor:pointer;"><i class="fa fa-edit" aria-hidden="true"></i></a></button></td>  
+                    </tr>
+                  </tbody>
+                </table>
+                <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

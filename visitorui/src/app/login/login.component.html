@@ -1,0 +1,31 @@
+<without-navbar></without-navbar>
+<div class="login-form">
+    <form #loginForm="ngForm" (ngSubmit)="authenticate(authentication)">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <h3 class="text-center text-info">Login</h3>
+            <div class="form-group">
+                <label for="lblusername" class="text-info">User Name:</label><br>
+                <input type="text" name="userName" id="txtUserName"
+                    [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" class="form-control border-input"
+                    placeholder="Name" [(ngModel)]="authentication.userName" #userName="ngModel" required>
+                <span class="help-block" *ngIf="userName.invalid && userName.touched" style="color:red">User Name is
+                    required</span>
+            </div>
+            <div class="form-group">
+                <label for="password" class="text-info">Password:</label><br>
+
+                <input type="password" id="txtPassword" name="password" class="form-control border-input"
+                    placeholder="Password" [(ngModel)]="authentication.password" #password="ngModel" required
+                    (paste)="pasteUrl($event)">
+                <span class="help-block" *ngIf="password.errors?.required && password.touched"
+                    style="color:red">Password is required</span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-info btn-fill btn-wd" [disabled]='!loginForm.valid'>
+            </div>
+        </div>
+    </form>
+    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+        <p style="font-size: 20px; color: white">Loading...</p>
+    </ngx-spinner>
+</div>
