@@ -1,6 +1,6 @@
 a,button{cursor: pointer;}
 table{ border:1px solid #ddd}
-.container { margin-left: 235px; width:87%}
+.container { margin-left: 235px; width:80%}
 .btn, .navbar .navbar-nav > li > a.btn{ border-radius: 6px}
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
     background-color: #7bc4ed; 
