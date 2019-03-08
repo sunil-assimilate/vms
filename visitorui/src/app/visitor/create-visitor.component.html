@@ -1,11 +1,11 @@
 <with-navbar></with-navbar>
+<header-main></header-main>
 <div class="container" style="padding-left:45px;">
-
   <form #createVisitorForm="ngForm" (ngSubmit)="addVisitor(visitor)">
+      <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title;text-align:center"> Add Visitor</h3>
-    </div>
-    <div class="panel panel-flat">
+      <h3 class="panel-title"> Add Visitor</h3>
+    </div> 
       <div class="panel-body">
         <div class="row form-group">
           <label class="col-lg-2">Contact Number<span style="color:red">*</span></label>
@@ -13,8 +13,7 @@
             <input required id="txtcontactno" (keypress)="numberOnly($event)" ngxPhoneMask class="form-control border-input" placeholder="Contact Number" type="text"
               [(ngModel)]="visitor.contactNumber" #contactNumber="ngModel" name="contactNumber" />
             <span class="help-block" *ngIf="contactNumber.invalid && contactNumber.touched" style="color:red">Contact
-              Number is
-              required</span>
+              Number is required</span>
           </div>
 
 
@@ -167,17 +166,16 @@
 
       </div>
       </div>
-
-      <div class="row form-group">
+      <div class="panel-footer">
+      <div class="row">
         <div class="col-lg-12">
           <input id="btnSave" type="submit" class="btn btn-info btn-fill btn-wd" type="submit" value="Save"
             [disabled]='!createVisitorForm.valid' /> &nbsp;
           <input id="btnReset" type="button" class="btn btn-info btn-fill btn-wd" type="button" value="Reset"
             (click)="resetControl()" />
         </div>
+        </div>
       </div>
-
     </div>
-
   </form>
 </div>

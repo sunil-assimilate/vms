@@ -158,6 +158,10 @@
     padding: 5px;
 }
 
+.numbers p{
+  white-space: nowrap;
+}
+
 /*
 headeer top
 */

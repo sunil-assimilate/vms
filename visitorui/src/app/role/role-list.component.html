@@ -1,23 +1,23 @@
 <with-navbar></with-navbar>
-
+<header-main></header-main>
 <div class="container" style="padding-left:45px;">  
     <form id="rolelist-form">  
-    <div class="content">
+      <div class="content">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="header">
                   <h4 class="title">Role List</h4>
-                  <p class="category">list of all role</p>
+                  <p class="category">List of all roles.</p>
                 </div>
-                <div class="row">
-                  <div class="col-xs-8 col-sm-8 col-md-8">
+                <div class="">
+                  <div class="col-xs-8 col-sm-6 col-md-6">
                     <div class="form-group">
                       <input type="text" id="txtsearch" class="form-control border-input" placeholder="Search">
                     </div>
                   </div>
-                  <div class="col-xs-4 col-sm-4 col-md-4">
+                  <div class="col-xs-4 col-sm-6 col-md-6">
                     <div class="form-group">
                       <input type="submit" value="Search" class="btn btn-info btn-fill btn-wd" > &nbsp;
                       <input type="submit" value="Add New" class="btn btn-info btn-fill btn-wd" routerLink="createrole">
@@ -25,10 +25,11 @@
                   </div>
                 </div>
                 <div class="content table-responsive table-full-width">
-                  <table class="table table-hover">
+                  <table class="table table-hover role-table" id="rList" >
                     <thead>                     
                       <th>Role</th>
-                      <th>Role Type</th>                    
+                      <th>Role Type</th>   
+                      <th>&nbsp;</th>                  
                     </thead>
                     <tbody>
                         <tr *ngFor="let role of roleList | paginate: config"> 

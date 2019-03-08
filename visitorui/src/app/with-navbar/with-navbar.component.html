@@ -6,40 +6,38 @@
     </div>
 
     <ul class="nav">
-        <li class=active>
-            <a routerLink="/dashboard">
-              <i class="ti-panel"></i> Dashboard
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/dashboard" >
+              <i class="fa fa-dashboard fa-lg"></i> Dashboard
             </a>
           </li>
-      <li>
-        <a routerLink="/role">
-          <i class="fa fa-users fa-lg"></i> Role
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/role" >
+          <i class="fa fa-lock fa-lg"></i> Role
         </a>
       </li>
-      <li>
-        <a routerLink="/user">
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/user" >
           <i class="ti-user"></i> Users
         </a>
       </li>
 
-      <li>
-        <a routerLink="/department">
-          <i class="fa fa-users fa-lg"></i> Department
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/department" >
+          <i class="fa fa-sitemap fa-lg"></i> Department
         </a>
       </li>
-      <li>
-        <a routerLink="/employee">
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/employee" >
           <i class="fa fa-user fa-lg"></i> Employee
         </a>
       </li>
-      <li>
-        <a routerLink="/visitor">
-          <i class="fa fa-users fa-lg"></i> Visitor
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/visitor" >
+          <i class="fa fa-address-card-o fa-lg"></i> Visitor
         </a>
       </li>
     </ul>
   </div>   
 </div> <!-- Sidebar  end -->
 </div> <!-- wrapper end -->
-
-

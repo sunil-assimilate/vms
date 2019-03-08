@@ -1,110 +1,120 @@
 <with-navbar></with-navbar>
- 
+<header-main></header-main>
 <div class="container" style="padding-left:45px;">
 
 
-  <div class="panel-heading">
-    <h3 class="panel-title;text-align:center">Visitor Details</h3>
-  </div>
+  
+    
+ 
+  <div class="panel panel-default vdetail">
+      <div class="panel-heading">
+         
+          <h3 class="panel-title">Visitor Details</h3>
+         
+        </div>
 
-  <button class="btn" (click)="routeToList()">Back</button>
-  <div class="panel panel-flat">
+        
     <div class="panel-body">
       <div class="row form-group">
         <label class="col-lg-2">Contact Number</label>
         <div class="col-lg-4 ">
-          <label class="col-lg-2">{{visitor.contactNumber}}</label>
+          <label class="col-lg-12 value">{{visitor.contactNumber}}</label>
         </div>
         <label class="col-lg-2 "><b>Email:</b> </label>
         <div class="col-lg-4 ">
-          <label class="col-lg-2">{{visitor.email}}</label>
+          <label class="col-lg-12 value">{{visitor.email}}</label>
         </div>
       </div>
       <div class="row form-group">
         <label class="col-lg-2"><b>First Name</b></label>
         <div class="col-lg-4 ">
-          <label class="col-lg-2">{{visitor.firstName}}</label>
+          <label class="col-lg-12 value">{{visitor.firstName}}</label>
         </div>
         <label class="col-lg-2"><b>Last Name:</b></label>
         <div class="col-lg-4 ">
-          <label class="col-lg-2">{{visitor.lastName}}</label>
+          <label class="col-lg-12 value">{{visitor.lastName}}</label>
         </div>
       </div>
 
       <div class="row form-group">
         <label class="col-lg-2 "><b>Country</b></label>
         <div class="col-lg-4 ">
-          <label class="col-lg-2">{{visitor.country.name}}</label>
+          <label class="col-lg-12 value">{{visitor.country.name}}</label>
         </div>
 
         <label class="col-lg-2"><b>State:</b> </label>
         <div class="col-lg-4 ">
-          <label class="col-lg-2">{{visitor.state.name}}</label>
+          <label class="col-lg-12 value">{{visitor.state.name}}</label>
         </div>
       </div>
       <div class="row form-group">
         <label class="col-lg-2"><b>Address</b> </label>
         <div class="col-lg-4 ">
-          <label class="col-lg-2">{{visitor.address}}</label>
+          <label class="col-lg-12 value">{{visitor.address}}</label>
         </div>
         <label class="col-lg-2"><b>Zip Code:</b> </label>
         <div class="col-lg-4 ">
-          <label class="col-lg-2">{{visitor.zipCode}}</label>
+          <label class="col-lg-12 value">{{visitor.zipCode}}</label>
         </div>
       </div>
       <div class="row form-group">
         <label class="col-lg-2"><b>Department:</b> </label>
         <div class="col-lg-4 ">
-          <label class="col-lg-2">{{visitor.department.name}}</label>
+          <label class="col-lg-12 value">{{visitor.department.name}}</label>
         </div>
         <label class="col-lg-2"><b>To Meet:</b></label>
         <div class="col-lg-4 ">
-          <label class="col-lg-2">{{visitor.toMeet.name}}</label>
+          <label class="col-lg-12 value">{{visitor.toMeet.name}}</label>
         </div>
       </div>
-    </div>
-    <div class="row form-group">
+    
+      <div class="row form-group">
 
 
-      <label class="col-lg-2"><b>Identity Number:</b> </label>
-      <div class="col-lg-4 ">
-        <label class="col-lg-2">{{visitor.identityNumber}}</label>
-      </div>
-      <label class="col-lg-2"><b>Photo Identity Type:</b> </label>
-      <div class="col-lg-4 ">
-        <label class="col-lg-2">{{visitor.photoIdType.name}}</label>
-      </div>
-    </div>
-
-    <div class="row form-group">
-      <label class="col-lg-2"><b>Location:</b> </label>
-      <div class="col-lg-4 ">
-        <label class="col-lg-2">{{visitor.location.name}}</label>
-      </div>
-    </div>
-
-    <div class="row form-group">
-      <label class="col-lg-2"><b>Purpose</b> <span style="color:red">*</span></label>
-      <div class="col-lg-4 ">
-        <label class="col-lg-2">{{visitor.purpose}}</label>
-
-      </div>
-      <label class="col-lg-2 "><b>comments:</b> </label>
-      <div class="col-lg-4 ">
-        <label class="col-lg-2">{{visitor.comment}}</label>
-      </div>
-    </div>
-    <div class="row form-group">
-        <label class="col-lg-2"><b>CheckIn</b></label>
-        <div class="col-lg-4 ">
-          <label class="col-lg-2">{{visitor.checkIn |date:'MM/dd/yyyy @ h:mma'}}</label>
-  
+          <label class="col-lg-2"><b>Indentity Number:</b> </label>
+          <div class="col-lg-4 ">
+            <label class="col-lg-12 value">{{visitor.identityNumber}}</label>
+          </div>
+          <label class="col-lg-2"><b>Photo Identity Type:</b> </label>
+          <div class="col-lg-4 ">
+            <label class="col-lg-12 value">{{visitor.photoIdType.name}}</label>
+          </div>
         </div>
-        <label class="col-lg-2 "><b>CheckOut:</b> </label>
-        <div class="col-lg-4 ">
-          <label class="col-lg-2">{{visitor.checkOut |date:'MM/dd/yyyy @ h:mma' }}</label>
+    
+        <div class="row form-group">
+          <label class="col-lg-2"><b>Purpose</b> <span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <label class="col-lg-12 value">{{visitor.purpose}}</label>
+    
+          </div>
+          <label class="col-lg-2 "><b>comments:</b> </label>
+          <div class="col-lg-4 ">
+            <label class="col-lg-12 value">{{visitor.comment}}</label>
+          </div>
         </div>
-      </div>
+        <div class="row form-group">
+            <label class="col-lg-2"><b>CheckIn</b></label>
+            <div class="col-lg-4 ">
+              <label class="col-lg-12 value">{{visitor.checkIn |date:'MM/dd/yyyy @ h:mma'}}</label>
+      
+            </div>
+            <label class="col-lg-2 "><b>CheckOut:</b> </label>
+            <div class="col-lg-4 ">
+              <label class="col-lg-12 value">{{visitor.checkOut |date:'MM/dd/yyyy @ h:mma' }}</label>
+            </div>
+          </div>
+
+    </div>
+<!-- panel body ends here -->
+
+<div class="panel-footer">
+  <div class="row">
+    <div class="col-lg-12">
+    <button class="btn btn-fill btn-primary btn-wd pull-right" (click)="routeToList()">Back</button>
+  </div>
+</div>
+  </div>
+
   </div>
 </div>
  

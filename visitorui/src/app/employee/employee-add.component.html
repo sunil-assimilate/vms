@@ -1,8 +1,11 @@
 <with-navbar></with-navbar>
+<header-main></header-main>
 <div class="container" style="padding-left:45px;">
   <form #createEmployeeForm="ngForm" (ngSubmit)="createEmployee(employee)">
+      <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">Add Employee</h3>
+    </div>
       <div class="panel-body">
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#single">Single Entry</a></li>
@@ -64,21 +67,15 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <button type="submit" id="btnSave" class="btn btn-info btn-fill btn-wd"
-                  [disabled]='!createEmployeeForm.valid'>Save</button>
-                &nbsp;
-                <button class="btn btn-info btn-fill btn-wd" (click)="resetControl()">Reset</button>
-              </div>
-            </div>
+           
           </div>
+<!-- bulk upload start -->
           <div class="tab-pane" id="multiple">
-            <div class="row form-group" style="padding-top:25px">
+            <div class=" form-group" >
               <label>For downloading the excel format</label>&nbsp;&nbsp;<a style="font-weight: bold"
                 href="../../assets/sampleexcel/employee.xlsx" download="employee.xlsx">Click here</a>
             </div>
-            <div class="row form-group">
+            <div class=" form-group">
               <label style="color:black; font-weight: bold;"><span style="color:red;">*</span> Choose Excel File (.xlsx
                 files only): </label>
               <div class="col-lg-10">
@@ -86,12 +83,26 @@
                   style="text-align:center;width:100%; background-color:white;height:25%" />
               </div>
             </div>
-            <div class="row form-group">
-              <button type="button" class="btn btn-info btn-fill btn-wd" id="btnSaveExcel" (click)="importEmployee()" >Import</button> &nbsp;
+            <div class="">
+              <button type="button" class="btn btn-info btn-fill btn-wd" style="margin-top:15px;" id="btnSaveExcel" (click)="importEmployee()" >Import</button> 
            </div>
+          </div>
+<!-- bulk upload end -->
+
+        </div>
+      </div>
+      <div class="panel-footer">
+      <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" id="btnSave" class="btn btn-info btn-fill btn-wd"
+              [disabled]='!createEmployeeForm.valid'>Save</button>
+            &nbsp;
+            <button class="btn btn-info btn-fill btn-wd" (click)="resetControl()">Reset</button>
           </div>
         </div>
       </div>
+
     </div>
+
   </form>
 </div>

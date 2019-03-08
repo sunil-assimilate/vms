@@ -1,5 +1,5 @@
 <with-navbar></with-navbar>
-
+<header-main></header-main>
 <div class="container" style="padding-left:45px;">
   <form id="employeelist-form" class="form">
     <div class="content">
@@ -9,28 +9,23 @@
             <div class="card">
               <div class="header">
                 <h4 class="title">Employee List</h4>
-                <p class="category">list of all employee</p>
+                <p class="category">List of all employees.</p>
               </div>
-              <div class="row">
-                <form>
-                  <div class="col-xs-8 col-sm-8 col-md-8">
-                    <div class="form-group">
-                      <input type="text" id="txtsearch" name="searchText" [(ngModel)]="employeeSearch.text"
-                        class="form-control border-input" placeholder="Search">
-                    </div>
+              <div class="">
+                <div class="col-xs-8 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input type="text" id="txtsearch" class="form-control border-input" placeholder="Search">
                   </div>
-                  <div class="col-xs-4 col-sm-4 col-md-4">
-                    <div class="form-group">
-                      <input type="submit" value="Search" (click)="loadEmployeeList()"
-                        class="btn btn-info btn-fill btn-wd"> &nbsp;
-                      <input type="submit" value="Add New" class="btn btn-info btn-fill btn-wd"
-                        routerLink="createvisitor">
-                    </div>
-                  </div>
-                </form>
+                </div>
+                <div class="col-xs-4 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input type="submit" value="Search" class="btn btn-info btn-fill btn-wd" (click)="searchEmployee()" > &nbsp;
+                    <input type="submit" value="Add New" class="btn btn-info   btn-outline-primary btn-wd" routerLink="addemployee">
+                  </div> 
+                </div>
               </div>
               <div class="content table-responsive table-full-width">
-                <table class="table table-hover">
+                <table class="table table-hover employee-table">
                   <thead>
                     <th>FirstName</th>
                     <th>Last Name</th>
