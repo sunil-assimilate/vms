@@ -128,10 +128,7 @@ div#multiple{
     border: 1px solid #ddd;
 }
 
-.footer {
-    position: absolute;   
-    bottom: 10px;
-}
+
 
  /* Media queries for ipad*/ 
 @media (max-width: 1024px) {

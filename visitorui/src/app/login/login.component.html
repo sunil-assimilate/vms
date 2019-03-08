@@ -5,20 +5,25 @@
             <h3 class="text-center text-info">Login</h3>
             <div class="form-group">
                 <label for="lblusername" class="text-info">User Name:</label><br>
+                <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
                 <input type="text" name="userName" id="txtUserName"
                     [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" class="form-control border-input"
                     placeholder="Name" [(ngModel)]="authentication.userName" #userName="ngModel" required>
                 <span class="help-block" *ngIf="userName.invalid && userName.touched" style="color:red">User Name is
                     required</span>
+                    </div>
             </div>
             <div class="form-group">
                 <label for="password" class="text-info">Password:</label><br>
-
+                <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                 <input type="password" id="txtPassword" name="password" class="form-control border-input"
                     placeholder="Password" [(ngModel)]="authentication.password" #password="ngModel" required
                     (paste)="pasteUrl($event)">
                 <span class="help-block" *ngIf="password.errors?.required && password.touched"
                     style="color:red">Password is required</span>
+                    </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-info btn-fill btn-wd" [disabled]='!loginForm.valid'>
