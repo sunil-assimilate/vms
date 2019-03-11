@@ -122,7 +122,7 @@
           </div>
 
 
-          <label class="col-lg-2"><b>Indentity Number:</b> </label>
+          <label class="col-lg-2"><b>Identity Number:</b> </label>
           <div class="col-lg-4 ">
             <input id="txtidentityno" required class="form-control border-input" placeholder="Identity Number"
               [(ngModel)]="visitor.identityNumber" #identityNumber="ngModel" type="text" name="identityNumber" />
@@ -135,7 +135,7 @@
         <div class="row form-group">
           <label class="col-lg-2"><b>Location:</b> </label>
           <div class="col-lg-4 ">
-            <select id="location" required class="form-control border-input" [(ngModel)]="visitor.Location"
+            <select id="location" required class="form-control border-input" [(ngModel)]="visitor.location"
               name="location" #location="ngModel">
               <option [ngValue]="null">Select Location </option>
               <option *ngFor="let location of locations" [ngValue]="location">
