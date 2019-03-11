@@ -158,9 +158,11 @@
     padding: 5px;
 }
 
-.numbers p{
-  white-space: nowrap;
+#dashboard .numbers p{
+  white-space: normal;
 }
+
+
 
 /*
 headeer top

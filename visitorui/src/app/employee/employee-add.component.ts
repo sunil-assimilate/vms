@@ -82,14 +82,15 @@ export class EmployeeAddComponent implements OnInit {
     });
 }
 // to reset contrl
-resetControl(){
+resetControl()
+{
   this.employee.firstName=null;
   this.employee.lastName=null;
   this.employee.cell=null;
   this.employee.email=null;  
-  this.employee.department=null; 
-
+  this.employee.department=null;
 }
+
 selected(){
   console.log(this.employee);
 }

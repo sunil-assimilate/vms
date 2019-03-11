@@ -2,10 +2,10 @@
 <header-main></header-main>
 <div class="container" style="padding-left:45px;">
   <form #createEmployeeForm="ngForm" (ngSubmit)="createEmployee(employee)">
-      <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Add Employee</h3>
-    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Employee</h3>
+      </div>
       <div class="panel-body">
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#single">Single Entry</a></li>
@@ -19,38 +19,40 @@
                 <div class="col-lg-4 ">
                   <input id="txtfirstName" class="form-control border-input" placeholder="First Name" type="text"
                     name="firstName" [(ngModel)]="employee.firstName" #firstName="ngModel" required />
-                    <span class="help-block" *ngIf="firstName.invalid && firstName.touched" style="color:red">First Name is
-                      required</span>
+                  <span class="help-block" *ngIf="firstName.invalid && firstName.touched" style="color:red">First Name
+                    is
+                    required</span>
                 </div>
               </div>
               <div class="row form-group">
                 <label class="col-lg-2 ">Last Name<span style="color:red">*</span></label>
                 <div class="col-lg-4 ">
-                  <input required id="txtlastName" name="lastName" class="form-control border-input" placeholder="Last Name"
-                    type="text" [(ngModel)]="employee.lastName" #lastName="ngModel" />
-                    <span class="help-block" *ngIf="lastName.invalid && lastName.touched" style="color:red">Last Name is
-                      required</span>
+                  <input required id="txtlastName" name="lastName" class="form-control border-input"
+                    placeholder="Last Name" type="text" [(ngModel)]="employee.lastName" #lastName="ngModel" />
+                  <span class="help-block" *ngIf="lastName.invalid && lastName.touched" style="color:red">Last Name is
+                    required</span>
                 </div>
               </div>
               <div class="row form-group">
                 <label class="col-lg-2 ">Contact Number<span style="color:red">*</span></label>
                 <div class="col-lg-4 ">
-                  <input required id="txtcell" class="form-control border-input" placeholder="Contect Number" type="text"  (keypress)="numberOnly($event)"
-                    name="cell" [(ngModel)]="employee.cell" #cell="ngModel" maxlength="10" />
-                    <span class="help-block" *ngIf="cell.invalid && cell.touched" style="color:red">Contact Number is
-                      required</span>   
+                  <input required id="txtcell" class="form-control border-input" placeholder="Contect Number"
+                    type="text" (keypress)="numberOnly($event)" name="cell" [(ngModel)]="employee.cell" #cell="ngModel"
+                    maxlength="10" />
+                  <span class="help-block" *ngIf="cell.invalid && cell.touched" style="color:red">Contact Number is
+                    required</span>
                 </div>
               </div>
               <div class="row form-group">
                 <label class="col-lg-2 ">Email<span style="color:red">*</span></label>
                 <div class="col-lg-4 ">
-                  <input email required id="txtemail" class="form-control border-input" placeholder="Email" type="text" name="email"
-                    type="text" [(ngModel)]="employee.email" #email="ngModel" />
-                    <span class="help-block" *ngIf="email.errors?.required && email.touched" style="color:red">Email is
-                      invalid</span>
-                      
+                  <input email required id="txtemail" class="form-control border-input" placeholder="Email" type="text"
+                    name="email" type="text" [(ngModel)]="employee.email" #email="ngModel" />
+                  <span class="help-block" *ngIf="email.errors?.required && email.touched" style="color:red">Email is
+                    invalid</span>
+
                 </div>
-              </div> 
+              </div>
               <div class="row form-group">
                 <label class="col-lg-2 ">Department<span style="color:red">*</span></label>
                 <div class="col-lg-4 ">
@@ -61,17 +63,18 @@
                     <option *ngFor="let department of departmentList" [ngValue]="department">{{department.name}}
                     </option>
                   </select>
-                  <span class="help-block" *ngIf="departmentid.touched && departmentid.errors?.required" style="color:red">
+                  <span class="help-block" *ngIf="departmentid.touched && departmentid.errors?.required"
+                    style="color:red">
                     Department is required
                   </span>
                 </div>
               </div>
             </div>
-           
+
           </div>
-<!-- bulk upload start -->
+          <!-- bulk upload start -->
           <div class="tab-pane" id="multiple">
-            <div class=" form-group" >
+            <div class=" form-group">
               <label>For downloading the excel format</label>&nbsp;&nbsp;<a style="font-weight: bold"
                 href="../../assets/sampleexcel/employee.xlsx" download="employee.xlsx">Click here</a>
             </div>
@@ -84,20 +87,22 @@
               </div>
             </div>
             <div class="">
-              <button type="button" class="btn btn-info btn-fill btn-wd" style="margin-top:15px;" id="btnSaveExcel" (click)="importEmployee()" >Import</button> 
-           </div>
+              <button type="button" class="btn btn-info btn-fill btn-wd" style="margin-top:15px;" id="btnSaveExcel"
+                (click)="importEmployee()">Import</button>
+            </div>
           </div>
-<!-- bulk upload end -->
+          <!-- bulk upload end -->
 
         </div>
       </div>
       <div class="panel-footer">
-      <div class="row">
+        <div class="row">
           <div class="col-sm-12">
             <button type="submit" id="btnSave" class="btn btn-info btn-fill btn-wd"
               [disabled]='!createEmployeeForm.valid'>Save</button>
             &nbsp;
-            <button class="btn btn-info btn-primary-outline btn-wd" (click)="resetControl()">Reset</button>
+            <button type="button" class="btn btn-info btn-primary-outline btn-wd" (click)="resetControl()">Reset</button>
+
           </div>
         </div>
       </div>
