@@ -58,7 +58,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.loadUserList(this.userSearch);
-    this.changePassword.id = localStorage.getItem("userId");
+
   }
   //To fetch user list 
   loadUserList(search: any) {
@@ -79,7 +79,8 @@ export class UserListComponent implements OnInit {
     this.loadUserList(this.userSearch);
   }
   //To reset user password
-  resetPassword() {
+  resetPassword(id: string) {
+    this.changePassword.id = id;
     this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.resetPassword, this.changePassword)
       .subscribe((response: any) => {
         if (!response.isError) {
