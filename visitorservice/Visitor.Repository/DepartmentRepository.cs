@@ -39,12 +39,10 @@ namespace Visitor.Repository
 
             return department;
         }
-
         // public async Task<Employee> GetEmployee(string id)
         // {
         //     return await _visitorContext.Employees.Find(_=> _.Id == id).SingleAsync();
         // }
-
         public async Task<List<Department>> GetDepartments(Search search)
         {
             int skip;

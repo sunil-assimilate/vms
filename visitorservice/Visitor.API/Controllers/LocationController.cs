@@ -13,7 +13,7 @@ namespace visitor.service.Controllers
     [Route("location")]
     [ApiController]
     public class LocationController : ControllerBase
-    {
+        {
         public readonly ILocationRepository _locationRepository;
         private readonly ILogger _logger;
 
@@ -22,7 +22,6 @@ namespace visitor.service.Controllers
             _locationRepository = locationRepository;
             this._logger = logger;
         }
-
         public async Task<IActionResult> Add([FromBody]Location location)
         {
             //TODO: Handle error in the middleware and add try catch there only
@@ -39,7 +38,6 @@ namespace visitor.service.Controllers
                 response.ErrorMessage = "Some error occured, Please contact to administration";
                 return BadRequest(response);
             }
-
            return Ok(response);
         }
     }

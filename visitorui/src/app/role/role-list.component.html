@@ -14,12 +14,13 @@
                 <div class="">
                   <div class="col-xs-8 col-sm-6 col-md-6">
                     <div class="form-group">
-                      <input type="text" id="txtsearch" class="form-control border-input" placeholder="Search">
+                      <input type="text" id="txtsearch" class="form-control border-input" placeholder="Search"
+                      [(ngModel)]="roleSearch.text" #text="ngModel" name="text">
                     </div>
                   </div>
                   <div class="col-xs-4 col-sm-6 col-md-6">
                     <div class="form-group">
-                      <input type="submit" value="Search" class="btn btn-info btn-fill btn-wd" > &nbsp;
+                      <input type="submit" value="Search" class="btn btn-info btn-fill btn-wd" (click)="searchRole()" > &nbsp;
                       <input type="submit" value="Add New" class="btn btn-info btn-fill btn-wd" routerLink="createrole">
                     </div>
                   </div>
