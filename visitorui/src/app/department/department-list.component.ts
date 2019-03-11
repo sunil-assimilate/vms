@@ -14,13 +14,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DepartmentListComponent implements OnInit {
   config:any;
-  collection=[];
-   
+  collection=[];   
   departmentList:Array<Department>;
-  constructor(private serviceUtil: ServiceUtil, private route: ActivatedRoute, private router: Router) {
-     
-  }
-   
+  constructor(private serviceUtil: ServiceUtil, private route: ActivatedRoute, private router: Router) {    
+    this.config = {
+      currentPage: 1,
+      itemsPerPage: 10
+    };
+
+    this.route.queryParams.subscribe(params => {
+      this.config.currentPage = params.page;
+    });
+
+    for (let i = 1; i <= 100; i++) {
+      this.collection.push(`item ${i}`);
+    }  
+  }   
   ngOnInit() {
     this.loadDepartment();
   }

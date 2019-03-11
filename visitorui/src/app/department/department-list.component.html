@@ -15,13 +15,13 @@
                 <div class="col-xs-8 col-sm-6 col-md-6">
                   <div class="form-group">
                     <input type="text" class="form-control border-input" placeholder="Search"
-                      [(ngModel)]="deptsearch.text" #text="ngModel" name="text">
+                      >
                   </div>
                 </div>
                 <div class="col-xs-4 col-sm-6 col-md-6">
                   <div class="form-group">
                     <input type="submit" value="Search" class="btn btn-info btn-fill btn-wd"
-                      (click)="searchDepartment()">
+                      >
                   </div>
                 </div>
               </div>
@@ -33,12 +33,10 @@
                                                         
                   </thead>
                   <tbody>
-                    <tr *ngFor="let dempList of departmentList">
+                    <tr *ngFor="let dempList of departmentList | paginate: config">
                      <td>{{dempList.code}}</td>  
-                      <td>{{dempList.name}}</td>
-                                         
-                    </tr>
-                 
+                      <td>{{dempList.name}}</td>                                         
+                    </tr>                 
                 </tbody>
               </table>
               <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
