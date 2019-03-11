@@ -1,0 +1,8 @@
+visitorservice/Visitor.API/bin/
+visitorservice/Visitor.API/obj/
+visitorservice/Visitor.Entity/obj/
+visitorservice/Visitor.Entity/bin/
+visitorservice/Visitor.Repository/obj/
+visitorservice/Visitor.Repository/bin/
+visitorservice/Visitor.Service/bin/
+visitorservice/Visitor.Service/obj/

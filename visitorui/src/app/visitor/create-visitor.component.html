@@ -80,7 +80,7 @@
         <div class="row form-group">
           <label class="col-lg-2"><b>Department:</b> <span style="color:red">*</span></label>
           <div class="col-lg-4 ">
-            <select required id="department" class="form-control border-input" name="department"
+            <select required id="department" class="form-control border-input" name="department" (change)="bindEmployees(visitor.department)" 
               [(ngModel)]="visitor.department" #department="ngModel">
               <option [selected]="true" [ngValue]="null">Select Department</option>
               <option *ngFor="let department of departments" [ngValue]="department">
@@ -91,8 +91,6 @@
               required</span>
           </div>
         
-
-
           <label class="col-lg-2"><b>To Meet:</b> <span style="color:red">*</span></label>
           <div class="col-lg-4 ">
             <select id="ddlemployee" required class="form-control border-input" [(ngModel)]="visitor.toMeet"
@@ -122,7 +120,7 @@
           </div>
 
 
-          <label class="col-lg-2"><b>Indentity Number:</b> </label>
+          <label class="col-lg-2"><b>Identity Number:</b> </label>
           <div class="col-lg-4 ">
             <input id="txtidentityno" required class="form-control border-input" placeholder="Identity Number"
               [(ngModel)]="visitor.identityNumber" #identityNumber="ngModel" type="text" name="identityNumber" />
@@ -135,7 +133,7 @@
         <div class="row form-group">
           <label class="col-lg-2"><b>Location:</b> </label>
           <div class="col-lg-4 ">
-            <select id="location" required class="form-control border-input" [(ngModel)]="visitor.Location"
+            <select id="location" required class="form-control border-input" [(ngModel)]="visitor.location"
               name="location" #location="ngModel">
               <option [ngValue]="null">Select Location </option>
               <option *ngFor="let location of locations" [ngValue]="location">
@@ -173,6 +171,8 @@
             [disabled]='!createVisitorForm.valid' /> &nbsp;
           <input id="btnReset" type="button" class="btn btn-info btn-fill btn-wd" type="button" value="Reset"
             (click)="resetControl()" />
+            <input id="btnCancel" type="button" class="btn btn-info btn-fill btn-wd" type="button" value="Cancel"
+            (click)="goBack()" />
         </div>
         </div>
       </div>

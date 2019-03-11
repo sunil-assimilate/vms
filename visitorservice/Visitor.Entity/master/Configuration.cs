@@ -18,6 +18,6 @@ namespace Visitor.Entity
 
       public IList<Permission> Permissions {get;set;}
 
-      public IList<DropDownValue> Employees{get;set;}
+      public IList<Employee> Employees{get;set;}
   }
 }

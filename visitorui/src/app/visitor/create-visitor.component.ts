@@ -22,6 +22,7 @@ export class CreateVisitorComponent implements OnInit {
   employees: any;
   states: any;
   locations:any;
+  employeeDisabled:Boolean;
   constructor(private serviceUtil: ServiceUtil, private route: Router) { }
 
   ngOnInit() {
@@ -36,6 +37,8 @@ export class CreateVisitorComponent implements OnInit {
      this.visitor.toMeet = null;
      this.visitor.photoIdType = null;
      this.visitor.location = null;
+    
+     this.employeeDisabled = true;
   }
 
   numberOnly(event): boolean {
@@ -59,7 +62,10 @@ export class CreateVisitorComponent implements OnInit {
             })
 
             this.departments = this.configuration.departments;
-            this.employees = this.configuration.employees;
+            this.configuration.employees = this.configuration.employees.map((value, index, array) => {
+              return { _id: value.id, name: value.firstName +" " + value.lastName, department: value.department };
+            })
+
             this.photoIdTypes = this.configuration.photoIdTypes;
             this.states = this.configuration.countries[0].states;
             this.locations = this.configuration.locations;
@@ -72,14 +78,19 @@ export class CreateVisitorComponent implements OnInit {
       )
   }
 
-  bindEmployees() {
+  bindEmployees(department: any) {
+   
     // TODO: filter employees based on Department
+    this.employees = this.configuration.employees.filter((employee)=>{
+      return employee.department._id == department._id;
+    }); 
   }
 
   bindStates(event): void {
     // We are supporting only India right now, so not rettrieving the country again.
     this.states = this.configuration.countries[0].states;
   }
+
   //To add a user
   addVisitor(visitor: Visitor) {
     console.log(visitor);
@@ -105,6 +116,8 @@ export class CreateVisitorComponent implements OnInit {
 
   resetControl() {
     this.visitor = new Visitor();
+    this.initializeDefaultValues();
+    this.visitor.country = this.countries[0];
   }
 
   checkOut(visitor: Visitor) {
@@ -127,5 +140,9 @@ export class CreateVisitorComponent implements OnInit {
       }, error => {
         CommonUtil.handleError(error);
       });
+  }
+
+  goBack(){
+    this.route.navigate(['/visitor']);
   }
 }

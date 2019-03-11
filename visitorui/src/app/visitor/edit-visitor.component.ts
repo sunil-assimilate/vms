@@ -58,10 +58,14 @@ export class EditVisitorComponent implements OnInit {
         return c1 && c2 ? c1._id === c2._id : c1 === c2;
     }
 
-    bindEmployees() {
+    bindEmployees(department: any) {
+   
         // TODO: filter employees based on Department
-    }
-
+        this.employees = this.employees.filter((employee)=>{
+          return employee.department._id == department._id;
+        }); 
+      }
+      
     bindStates(event): void {
         // We are supporting only India right now, so not retrieving the country again.
         console.log("bind states");
@@ -120,7 +124,7 @@ export class EditVisitorComponent implements OnInit {
                 });
     }
 
-    cancel() {
+    goBack() {
         this.route.navigate(['/visitor']);
     }
 }
