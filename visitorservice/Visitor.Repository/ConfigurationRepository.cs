@@ -24,8 +24,7 @@ namespace Visitor.Repository
             var departments =   _visitorContext.Departments.Find(Builders<Department>.Filter.Empty).Project<DropDownValue>("{_id:1,Name:1}").ToListAsync();
             var roles =   _visitorContext.Roles.Find(Builders<Role>.Filter.Empty).Project<DropDownValue>("{_id:1,Name:1}").ToListAsync();
             var locations = _visitorContext.Locations.Find(Builders<Location>.Filter.Empty).Project<DropDownValue>("{_id:1,Name:1}").ToListAsync();
-            var projection = Builders<Employee>.Projection.Expression(x=> new DropDownValue(){ _id = x.Id, Name = x.FirstName+ " " +x.LastName });
-            var employees =   _visitorContext.Employees.Find(Builders<Employee>.Filter.Empty).Project<DropDownValue>(projection).ToListAsync();
+            var employees =  _visitorContext.Employees.Find(Builders<Employee>.Filter.Empty).ToListAsync();
      
             await Task.WhenAll(countries, photoIdTypes,departments, employees, locations);
             Configuration configuration = new Configuration();
