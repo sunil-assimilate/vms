@@ -1,7 +1,7 @@
 export class ServiceUrl {
     static validateUser = 'Account/Authenticate';
     static userList = 'User/Search';
-    static userDetail = 'User';
+    static userDetail = 'User/';
     static createUser = 'User';
     static editUser = 'User';
     static getRoleList = 'Configuration';

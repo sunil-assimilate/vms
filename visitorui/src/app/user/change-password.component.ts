@@ -36,8 +36,7 @@ export class ChangePasswordComponent implements OnInit {
   //To change user password
   changeUserPassword(userpassword: ChangePassword) {
     userpassword.id=this.changePassword.id;
-    alert(userpassword.id);
-     this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.changePassword, userpassword)
+    this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.changePassword, userpassword)
       .subscribe((response: any) => {
          if (!response.isError) {
            swal.fire({ type: 'success', text: 'Changed successfully', showCancelButton: false, confirmButtonText: 'OK' })
