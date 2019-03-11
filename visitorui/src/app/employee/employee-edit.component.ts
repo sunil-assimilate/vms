@@ -34,7 +34,7 @@ constructor(private serviceUtil: ServiceUtil, private route: Router, private _ro
   }
     // to bind role dropdown  
     bindDepartment() {       
-      this.serviceUtil.putData(AppSettings.base_url+ServiceUrl.getDepartmentList, ServiceUrl.getDepartmentList)
+      this.serviceUtil.putData(AppSettings.base_url+ServiceUrl.configuration, ServiceUrl.getDepartmentList)
         .subscribe((response: any) => {
           if (!response.isError) {
             this.departmentList= response.model.departments;
