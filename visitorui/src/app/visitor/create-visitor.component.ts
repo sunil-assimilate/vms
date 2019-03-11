@@ -79,7 +79,11 @@ export class CreateVisitorComponent implements OnInit {
   }
 
   bindEmployees(department: any) {
-   
+   if(department == null)
+   {
+     this.employees = [];
+      return;
+   }
     // TODO: filter employees based on Department
     this.employees = this.configuration.employees.filter((employee)=>{
       return employee.department._id == department._id;
