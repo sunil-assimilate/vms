@@ -17,11 +17,27 @@ namespace Visitor.Repository
             _visitorContext = context;
         }
 
-        public async Task<List<Role>> GetRoles()
-        {
-            return await _visitorContext.Roles.Find(Builders<Role>.Filter.Empty).ToListAsync();
+        public async Task<List<Role>> GetRoles(Search search)
+        {            
+            int skip;
+            int type;
+            string sortBy;
+            
+            if(search == null || search.PageNumber == 0 || String.IsNullOrEmpty(search.SortBy))
+            {
+               skip =0;
+               type =1;
+               sortBy = "Name";
+            }
+            else 
+            {
+               skip = search.PageNumber == 0 ? 0: search.PageNumber * search.PageSize - 1;
+               type = search.SortBy == "ASC" ? 1 : -1;
+               sortBy = search.SortBy;
+            }
+           var rolefilter = Builders<Role>.Filter.Regex(r => r.Name, "/"+search.Text+"/i");   
+           return await _visitorContext.Roles.Find(rolefilter).Sort(new BsonDocument(sortBy,type)).Skip(skip).Limit(search.PageSize).ToListAsync();    
         }
-
         public async Task<Role> GetRole(string id)
         {
             return await _visitorContext.Roles.Find(_ => _.Id == id).SingleAsync();

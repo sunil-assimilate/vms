@@ -16,26 +16,30 @@ export class DepartmentListComponent implements OnInit {
   config:any;
   collection=[];   
   departmentList:Array<Department>;
+  departmentSearch = {
+    "sortType": "ASC",
+    "sortBy": "",
+    "pageNumber": 1,
+    "pageSize": 10,
+    "text": ""
+  }
   constructor(private serviceUtil: ServiceUtil, private route: ActivatedRoute, private router: Router) {    
     this.config = {
       currentPage: 1,
       itemsPerPage: 10
     };
-
     this.route.queryParams.subscribe(params => {
       this.config.currentPage = params.page;
     });
-
     for (let i = 1; i <= 100; i++) {
       this.collection.push(`item ${i}`);
     }  
   }   
   ngOnInit() {
-    this.loadDepartment();
+    this.loadDepartment(this.departmentSearch);
   }
-  loadDepartment() {
-    //alert(AppSettings.base_url+ServiceUrl.dList);
-    this.serviceUtil.getData(AppSettings.base_url + ServiceUrl.getDepartmentList)
+  loadDepartment(search:any) {   
+    this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.getDepartmentList,this.departmentSearch)
       .subscribe((response: any) => {
         if (!response.isError) {
           console.log("Fetched data");
@@ -50,7 +54,9 @@ export class DepartmentListComponent implements OnInit {
       }, error => {
         CommonUtil.handleError(error);
       });
-  } 
- 
-
+  }  
+// Search role
+searchDepartment(){  
+  this.loadDepartment(this.departmentSearch);
+}
 }

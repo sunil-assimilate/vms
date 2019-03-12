@@ -50,15 +50,15 @@ namespace visitor.service.Controllers
             return Ok(response);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpPost("search")]
+        public async Task<IActionResult> Get(Search search)
         {
             //TODO: Handle error in the middleware and add try catch there 
             IListModelResponse<Role> response = new ListModelResponse<Role>();
             try
             {
                 _logger.LogInformation(entities.LoggingEvents.ListItems, "respository: {0}", _roleRepository);
-                List<Role> Roles = await _roleRepository.GetRoles();
+                List<Role> Roles = await _roleRepository.GetRoles(search);
                 response.Model = Roles;
                 response.Message = "Listed Roles successfully";
             }
@@ -113,10 +113,8 @@ namespace visitor.service.Controllers
                 _logger.LogError(entities.LoggingEvents.UpdateItem, ex, "Error while update Role");
                 response.IsError = true;
                 response.ErrorMessage = "Could not update Role";
-
                 return BadRequest(response);
             }
-
             return Ok(response);
         }
     }

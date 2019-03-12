@@ -11,7 +11,8 @@
           <label class="col-lg-2">First Name<span style="color:red">*</span></label>
           <div class="col-lg-4 ">
             <input required id="txtFirstName" name="firstName" class="form-control border-input"
-              placeholder="First Name" type="text" [(ngModel)]="user.firstName" #firstName="ngModel" />
+              placeholder="First Name" type="text" [(ngModel)]="user.firstName" #firstName="ngModel"
+              autocomplete="off" />
             <span class="help-block" *ngIf="firstName.invalid && firstName.touched" style="color:red">First Name is
               required</span>
           </div>
@@ -20,35 +21,35 @@
           <label class="col-lg-2">Last Name</label>
           <div class="col-lg-4 ">
             <input id="txtlastName" name="lastName" class="form-control border-input" placeholder="Last Name"
-              type="text" [(ngModel)]="user.lastName" #lastName="ngModel" />
+              type="text" [(ngModel)]="user.lastName" #lastName="ngModel" autocomplete="off" />
           </div>
         </div>
         <div class="row form-group">
           <label class="col-lg-2">User Name <span style="color:red">*</span></label>
           <div class="col-lg-4 ">
             <input required id="txtuserName" name="userName" class="form-control border-input" placeholder="User Name"
-              type="text" [(ngModel)]="user.userName" #userName="ngModel" />
+              type="text" [(ngModel)]="user.userName" #userName="ngModel" autocomplete="off" />
             <span class="help-block" *ngIf="userName.invalid && userName.touched" style="color:red">User Name is
               required</span>
           </div>
         </div>
-      
+
         <div class="row form-group">
           <label class="col-lg-2"> Email</label>
           <div class="col-lg-4 ">
-            <input email  id="txtEmail" name="email" class="form-control border-input" placeholder="Email" type="text"
-              [(ngModel)]="user.email" #email="ngModel" />
-              <span class="help-block" *ngIf="email.errors?.email && email.touched" style="color:red">
-                Email is invalid
-              </span>
-            
+            <input email id="txtEmail" name="email" class="form-control border-input" placeholder="Email" type="text"
+              [(ngModel)]="user.email" #email="ngModel" autocomplete="off" />
+            <span class="help-block" *ngIf="email.errors?.email && email.touched" style="color:red">
+              Email is invalid
+            </span>
+
           </div>
         </div>
         <div class="row form-group">
           <label class="col-lg-2"> Contact Number</label>
           <div class="col-lg-4 ">
-            <input id="txtcontactNumber" name="contactNumber" class="form-control border-input"
-              placeholder="Contact Number" type="text" [(ngModel)]="user.contactNumber" #contactNumber="ngModel" />
+            <input id="txtcontactNumber" name="contactNumber" class="form-control border-input" autocomplete="off" (keypress)="numberOnly($event)"
+              placeholder="Contact Number" type="text" [(ngModel)]="user.contactNumber" #contactNumber="ngModel" maxlength="10" />
           </div>
         </div>
         <div class="row form-group">
@@ -65,13 +66,15 @@
               Role is required
             </span>
           </div>
-        </div>       
+        </div>
       </div>
       <div class="panel-footer">
-      <input type="submit" value="Save" class="btn btn-info btn-fill btn-wd" [disabled]='!createUserForm.valid'> &nbsp;
-      <input type="button" value="Reset" class="btn btn-info btn-primary-outline btn-wd" (click)="resetControl()"> &nbsp;
-      <input type="button" value="Cancel" class="btn btn-info btn-primary-outline btn-wd" (click) ="goBack()" >
-    </div>
+        <input type="submit" value="Save" class="btn btn-info btn-fill btn-wd" [disabled]='!createUserForm.valid'>
+        &nbsp;
+        <input type="button" value="Reset" class="btn btn-info btn-primary-outline btn-wd" (click)="resetControl()">
+        &nbsp;
+        <input type="button" value="Cancel" class="btn btn-info btn-primary-outline btn-wd" (click)="goBack()">
+      </div>
     </div>
   </form>
 </div>

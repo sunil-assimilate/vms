@@ -7,6 +7,7 @@ export class Employee{
     cell:string;
     email:string;    
     department:any ;  
+    empCode:string;
 }
 
 

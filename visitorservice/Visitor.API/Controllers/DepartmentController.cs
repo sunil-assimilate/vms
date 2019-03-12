@@ -50,15 +50,16 @@ namespace visitor.service.Controllers
         //     return Ok(response);
         // }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+      //  [HttpGet]
+      [HttpPost("search")]
+        public async Task<IActionResult> Get([FromBody]Search search)
         {
             //TODO: Handle error in the middleware and add try catch there 
             IListModelResponse<Department> response = new ListModelResponse<Department>();
             try
             {
                 _logger.LogInformation(entities.LoggingEvents.ListItems, "respository: {0}", _departmentRepository);
-                List<Department> departments = await _departmentRepository.GetDepartments();
+                List<Department> departments = await _departmentRepository.GetDepartments(search);
                 response.Model = departments;
                 response.Message = "Listed Departments successfully";
             }

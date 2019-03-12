@@ -23,7 +23,8 @@ employee:Employee= {
    lastName:null,
    cell:null,
    email:null,
-   department:null
+   department:null,
+   empCode:null
 }
 constructor(private serviceUtil: ServiceUtil, private route: Router, private _route: ActivatedRoute) { }
 
@@ -34,7 +35,7 @@ constructor(private serviceUtil: ServiceUtil, private route: Router, private _ro
   }
     // to bind role dropdown  
     bindDepartment() {       
-      this.serviceUtil.putData(AppSettings.base_url+ServiceUrl.getDepartmentList, ServiceUrl.getDepartmentList)
+      this.serviceUtil.putData(AppSettings.base_url+ServiceUrl.configuration, ServiceUrl.getDepartmentList)
         .subscribe((response: any) => {
           if (!response.isError) {
             this.departmentList= response.model.departments;
@@ -50,6 +51,7 @@ constructor(private serviceUtil: ServiceUtil, private route: Router, private _ro
     }
     //To get employee detail by id
      employeeDetail(id: string) {      
+       console.log(AppSettings.base_url +ServiceUrl.employeeDetail+this.employeeId);
     this.serviceUtil.getData(AppSettings.base_url +ServiceUrl.employeeDetail+this.employeeId)
       .subscribe((response: any) => {
         if (!response.isError) {          

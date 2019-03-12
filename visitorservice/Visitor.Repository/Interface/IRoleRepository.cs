@@ -7,7 +7,7 @@ namespace Visitor.Repository
 {
     public interface IRoleRepository
     {
-       Task<List<Role>> GetRoles();
+       Task<List<Role>> GetRoles(Search search);
 
        Task<Role> GetRole(string id);
 

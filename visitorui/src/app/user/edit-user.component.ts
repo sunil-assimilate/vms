@@ -115,4 +115,14 @@ export class EditUserComponent implements OnInit {
     this.route.navigate(['user']);
   }
 
+ // Restrict input only to number only
+ numberOnly(event): boolean {
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    return false;
+  }
+  return true;
+
+}
+
 }

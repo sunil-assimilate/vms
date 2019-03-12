@@ -8,10 +8,11 @@ export class ServiceUrl {
     static changePassword = 'Account/ChangePassword';
     static resetPassword = 'Account/ResetPassword';
     //Role
+    static rolesearch = 'role/search';
     static role = 'role';
     static roleDetail='role/';
     //Department
-    static getDepartmentList = 'department';
+    static getDepartmentList = 'department/search';
     static configuration ='configuration';
     //employee
     static employeeList = 'employee/search';

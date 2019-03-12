@@ -4,17 +4,24 @@ import {AppSettings} from '../infrastructure/appsettings'
 import {ServiceUrl} from '../infrastructure/service/serviceUrls.service'
 import { ServiceUtil } from '../infrastructure/service/serviceUtil.sevice';
 import { ActivatedRoute, Router } from '@angular/router';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-role-list',
   templateUrl: './role-list.component.html',
   styleUrls: ['./role-list.component.css']
 })
 export class RoleListComponent implements OnInit {
-   
-
-  config:any;
+   config:any;
   collection=[];
 roleList:Array<Role>;
+
+roleSearch = {
+  "sortType": "ASC",
+  "sortBy": "",
+  "pageNumber": 1,
+  "pageSize": 10,
+  "text": ""
+}
 constructor(private serviceUtil: ServiceUtil, private route: ActivatedRoute, private router: Router) {
   this.config = {
     currentPage: 1,
@@ -32,23 +39,29 @@ pageChange(newPage: number) {
   this.router.navigate(['/role'], { queryParams: { page: newPage } });
 }
   ngOnInit() { 
-    this.loadRoleList();
+    this.loadRoleList(this.roleSearch);
   } 
   //To fetch user list 
-  loadRoleList(){
-  this.serviceUtil.getData(AppSettings.base_url+ServiceUrl.role).subscribe(
+  loadRoleList(search:any){  
+  this.serviceUtil.postData(AppSettings.base_url+ServiceUrl.rolesearch,this.roleSearch).subscribe(
     response=>{
       if(!response.IsError)
       {
-        this.roleList = response.model;
-       //console.log("hi");
-       //alert('Save');
+        this.roleList = response.model;     
       }
-      else
-      {
-        alert('error');
-      }
+      else {
+        swal.fire({
+          type: 'error', text: response.message, showCancelButton: false,
+          confirmButtonText: 'OK'
+        });
+    }
     }
   )
-}}
+}
+// Search role
+searchRole(){  
+  this.loadRoleList(this.roleSearch);
+}
+
+}
 
