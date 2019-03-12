@@ -20,8 +20,8 @@
                   </div>
                   <div class="col-xs-4 col-sm-6 col-md-6">
                     <div class="form-group">
-                      <input type="submit" value="Search" class="btn btn-info btn-fill btn-wd" (click)="searchRole()" > &nbsp;
-                      <input type="submit" value="Add New" class="btn btn-info btn-fill btn-wd" routerLink="createrole">
+                      <input type="submit" value="Search" class="btn btn-info btn-primary-outline btn-wd" (click)="searchRole()" > &nbsp;
+                      <input type="submit" value="Add New" class="btn btn-info btn-primary-outline btn-wd" routerLink="createrole">
                     </div>
                   </div>
                 </div>
@@ -30,6 +30,7 @@
                     <thead>                     
                       <th>Role</th>
                       <th>Role Type</th>
+                      <th>Created On</th>      
                       <th>Action</th>   
                       <th>&nbsp;</th>                  
                     </thead>
@@ -37,6 +38,7 @@
                         <tr *ngFor="let role of roleList | paginate: config"> 
                             <td>{{role.name}}</td>
                             <td>{{role.type=="PDF"?"Pre-defined":'User-defined'}}</td> 
+                            <td>{{role.createdOn |date:'MM/dd/yyyy'}}</td>    
                             <td><button class="btn"><a [routerLink]="['edit',role.id]" style="cursor:pointer;" title="Click here to edit"><i class="fa fa-edit" aria-hidden="true"></i></a></button></td>
                         </tr>             
                       </tbody>

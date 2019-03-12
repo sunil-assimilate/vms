@@ -20,5 +20,8 @@ namespace Visitor.Entity
         public string Email { get; set; }
 
         public DropDownValue Department {get;set;}
+
+        [BsonElement("EmpCode")]
+        public string EmpCode { get; set; }
     }
 }

@@ -24,7 +24,8 @@ export class EmployeeAddComponent implements OnInit {
      lastName:null,
      cell:null,
      email:null,
-     department:null
+     department:null,
+     empCode:null
   }
   constructor(private serviceUtil: ServiceUtil, private route: Router) { }
   ngOnInit() {
@@ -33,7 +34,6 @@ export class EmployeeAddComponent implements OnInit {
   // bind Department List 
   bindDepartment()
   {
-    //alert(AppSettings.base_url + ServiceUrl.getdepartmentList);
    this.serviceUtil.getData(AppSettings.base_url+ServiceUrl.dList)
      .subscribe((response: any) => {
        if (!response.isError) {

@@ -7,6 +7,17 @@
         <h3 class="panel-title">Edit Employee</h3>
       </div>
       <div class="panel-body">
+          <div class="row form-group">
+              <label class="col-lg-2 ">Employee Code<span style="color:red">*</span></label>
+              <div class="col-lg-4 ">
+                <input id="txtempcode" class="form-control border-input" placeholder="Employee Code" type="text"
+                  maxlength="10" name="empCode" [(ngModel)]="employee.empCode" #empCode="ngModel" required
+                  autocomplete="off" />
+                <span class="help-block" *ngIf="empCode.invalid && empCode.touched" style="color:red">Employee Code
+                  is
+                  required</span>
+              </div>
+            </div>
         <div class="row form-group">
           <label class="col-lg-2 ">First Name<span style="color:red">*</span></label>
           <div class="col-lg-4 ">

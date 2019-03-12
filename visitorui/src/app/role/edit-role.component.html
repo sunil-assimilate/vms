@@ -12,7 +12,7 @@
 					<div class="col-lg-4">						
 						<input required id="txtrole" name="role" class="form-control border-input"
 						placeholder="Role" type="text" [(ngModel)]="role.name" #name="ngModel" autocomplete="off"  maxlength="25" />
-						<span class="help-block" *ngIf="name.invalid && name.touched" style="color:red">role is
+						<span class="help-block" *ngIf="name.invalid && name.touched" style="color:red">Role is
 								required</span>
 					</div>
 				</div>
@@ -56,9 +56,9 @@
           <div class="panel-footer">
 			<div class="row ">
 					<div class="col-xs-12 col-sm-12 col-md-12">
-              <input type="submit" value="Save" class="btn btn-info btn-fill btn-wd" [disabled]='!editroleForm.valid'> &nbsp;              
+              <input type="submit" value="Save" class="btn btn-info btn-primary-outline btn-wd" [disabled]='!editroleForm.valid'> &nbsp;              
               <!-- <input type="button" value="Reset" class="btn btn-info btn-fill btn-wd" (click)="resetControl()"> &nbsp; -->
-              <input type="button" value="Cancel" class="btn btn-info btn-fill btn-wd" (click)="goBack()">
+              <input type="button" value="Cancel" class="btn btn-info btn-primary-outline btn-wd" (click)="goBack()">
 					</div>
 				</div>
 			</div>

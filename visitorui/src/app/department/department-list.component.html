@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-xs-4 col-sm-6 col-md-6">
                   <div class="form-group">
-                    <input type="submit" value="Search" class="btn btn-info btn-fill btn-wd" (click)="searchDepartment()"
+                    <input type="submit" value="Search" class="btn btn-info btn-primary-outline btn-wd" (click)="searchDepartment()"
                       >
                   </div>
                 </div>
@@ -29,12 +29,13 @@
                   <thead>
                     <th>Code </th>  
                     <th>Name</th>
-                                                        
+                    <th>Created On</th>                                                        
                   </thead>
                   <tbody>
                     <tr *ngFor="let dempList of departmentList | paginate: config">
                      <td>{{dempList.code}}</td>  
-                      <td>{{dempList.name}}</td>                                         
+                      <td>{{dempList.name}}</td>
+                      <td>{{dempList.createdOn |date:'MM/dd/yyyy'}}</td>                                          
                     </tr>                 
                 </tbody>
               </table>
