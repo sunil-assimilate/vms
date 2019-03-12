@@ -20,13 +20,18 @@ namespace Visitor.Repository
             _logger = logger;
         }
 
+        public long GetVisitorsCount()
+        {
+           return this._visitorContext.Visitors.CountDocuments(new BsonDocument());
+        }
+
         public async Task<IEnumerable<entity.Visitor>> GetVisitors(Search search)
         {
             int skip;
             int type;
             string sortBy;
             
-            if(search ==null || search.PageNumber == 0 || String.IsNullOrEmpty(search.SortBy))
+            if(search ==null || search.PageNumber == 0 || String.IsNullOrEmpty(search.SortType))
             {
                skip =0;
                type =1;
@@ -34,11 +39,21 @@ namespace Visitor.Repository
             }
             else 
             {
-               skip = search.PageNumber ==0 ? 0: search.PageNumber * search.PageSize - 1;
+               skip = search.PageNumber < 2 ? 0: (search.PageNumber -1) * (search.PageSize  ) ;
                type = search.SortBy == "ASC" ? 1 : -1;
-               sortBy = search.SortBy;
+
+               if(string.IsNullOrEmpty(search.SortBy))
+               {
+                  sortBy = "FirstName";
+               }
+               else
+               {
+                  sortBy = search.SortBy;
+               }
             }
 
+            _logger.LogInformation(1002, null,"fetched visitors: skip records:{0},number of records: {1}", skip, search.PageSize);
+           
            var emailFilter = Builders<entity.Visitor>.Filter.Regex(r => r.Email, "/"+search.Text+"/i");
            var addressFilter = Builders<entity.Visitor>.Filter.Regex(r => r.Address, "/"+search.Text+"/i");
            var contactNumberFilter = Builders<entity.Visitor>.Filter.Regex(r => r.ContactNumber, "/"+search.Text+"/i");
@@ -56,6 +71,31 @@ namespace Visitor.Repository
         {
             try
             {
+            //   for(int i=0; i<5000; i++)
+            //   {
+            //       entity.Visitor v1 = new entity.Visitor();
+            //       v1.ContactNumber = visitor.ContactNumber;
+            //       v1.Country = visitor.Country;
+            //       v1.CreatedBy = visitor.CreatedBy;
+            //       v1.CreatedOn = visitor.CreatedOn;
+            //       v1.Department = visitor.Department;
+            //       v1.Email = i+ visitor.Email;
+            //       v1.FirstName = visitor.FirstName+i;
+            //       v1.IdentityNumber = visitor.IdentityNumber +i;
+            //       v1.LastModifiedBy = visitor.LastModifiedBy;
+            //       v1.LastModifiedOn = visitor.LastModifiedOn;
+            //       v1.LastName = visitor.LastName+i;
+            //       v1.Location = visitor.Location;
+            //       v1.PhotoIdType = visitor.PhotoIdType;
+            //       v1.Purpose = visitor.Purpose+i;
+            //       v1.State = visitor.State;
+            //       v1.ToMeet = visitor.ToMeet;
+            //       v1.ZipCode = visitor.ZipCode+i;
+
+            //       _visitorContext.Visitors.InsertOneAsync(v1);
+            //   }
+
+
                 await _visitorContext.Visitors.InsertOneAsync(visitor);
                 return visitor;
             }

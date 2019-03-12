@@ -6,10 +6,10 @@ namespace Visitor.Entity
 {
     public class City
     {
-        [BsonElement("CityId")]
+        [BsonElement("cityId")]
         public int CityId { get; set; }
 
-        [BsonElement("Name")]
+        [BsonElement("name")]
         public string Name { get; set; }
     }
 }

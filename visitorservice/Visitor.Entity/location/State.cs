@@ -7,13 +7,13 @@ namespace Visitor.Entity
     public class State
     {
 
-        [BsonElement("StateId")]
+        [BsonElement("stateId")]
         public int StateId { get; set; }
 
-        [BsonElement("Name")]
+        [BsonElement("name")]
         public string Name { get; set; }
 
-        [BsonElement("Cities")]
+        [BsonElement("cities")]
         public IList<City> Cities { get; set; }
 
     }

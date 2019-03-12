@@ -1,14 +1,16 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Visitor.Entity;
 using entity = Visitor.Entity;
+
 
 namespace Visitor.Repository
 {
     public interface IVisitorRepository
     {
-       Task<IEnumerable<entity.Visitor>> GetVisitors(Search search);
+       long GetVisitorsCount();
+     
+       Task<IEnumerable<entity.Visitor>> GetVisitors(entity.Search search);
 
        Task<entity.Visitor> GetVisitor(string id);
 

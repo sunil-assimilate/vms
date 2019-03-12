@@ -10,7 +10,7 @@
         <div class="row form-group">
           <label class="col-lg-2">Contact Number<span style="color:red">*</span></label>
           <div class="col-lg-4 ">
-            <input required id="txtcontactno" (keypress)="numberOnly($event)" ngxPhoneMask class="form-control border-input" placeholder="Contact Number" type="text"
+            <input required id="txtcontactno" (keypress)="numberOnly($event)" ngxPhoneMask class="form-control border-input" autocomplete="off" placeholder="Contact Number" type="text" maxlength="10"
               [(ngModel)]="visitor.contactNumber" #contactNumber="ngModel" name="contactNumber" />
             <span class="help-block" *ngIf="contactNumber.invalid && contactNumber.touched" style="color:red">Contact
               Number is required</span>
@@ -19,7 +19,7 @@
 
           <label class="col-lg-2 "><b>Email:</b> </label>
           <div class="col-lg-4 ">
-            <input id="txtEmail" class="form-control border-input" placeholder="Email" type="email"
+            <input id="txtEmail" class="form-control border-input" placeholder="Email" type="email" autocomplete="off" maxlength="25"
               [(ngModel)]="visitor.email" #email="ngModel" name="email" email />
             <span class="help-block" *ngIf="email.value !== '' && email.untouched && email.invalid" style="color:red">Invalid email</span>
           </div>
@@ -27,7 +27,7 @@
         <div class="row form-group">
           <label class="col-lg-2"><b>First Name</b><span style="color:red">*</span> </label>
           <div class="col-lg-4 ">
-            <input id="txtfirstname" required class="form-control border-input" placeholder="First Name" type="text"
+            <input id="txtfirstname" required class="form-control border-input" placeholder="First Name" type="text" autocomplete="off" maxlength="20"
               [(ngModel)]="visitor.firstName" #firstName="ngModel" name="firstName" />
             <span class="help-block" *ngIf="firstName.invalid && firstName.touched" style="color:red">First Name is
               required</span>
@@ -35,7 +35,7 @@
           </div>
           <label class="col-lg-2"><b>Last Name:</b><span style="color:red">*</span> </label>
           <div class="col-lg-4 ">
-            <input id="txtlastname" required class="form-control border-input" placeholder="Last Name" type="text"
+            <input id="txtlastname" required class="form-control border-input" placeholder="Last Name" type="text" autocomplete="off" maxlength="15"
               [(ngModel)]="visitor.lastName" #lastName="ngModel" name="lastName" />
               <span class="help-block" *ngIf="lastName.invalid && lastName.touched" style="color:red">Last Name is
                 required</span>
@@ -45,7 +45,7 @@
         <div class="row form-group">
           <label class="col-lg-2 "><b>Country</b> <span style="color:red">*</span></label>
           <div class="col-lg-4 ">
-            <select required id="country" class="form-control border-input" name="country" [(ngModel)]="visitor.country"
+            <select required id="country" class="form-control border-input" name="country" [(ngModel)]="visitor.country" autocomplete="off"
               [attr.disabled]="true" (change)="bindStates($event)" #country="ngModel">
               <option [ngValue]="null">Select Country</option>
               <option *ngFor="let country of countries" [ngValue]="country">
@@ -56,7 +56,7 @@
 
           <label class="col-lg-2"><b>State:</b><span style="color:red">*</span> </label>
           <div class="col-lg-4 ">
-            <select id="state" class="form-control border-input" name="state" [(ngModel)]="visitor.state"
+            <select id="state" class="form-control border-input" name="state" [(ngModel)]="visitor.state" autocomplete="off"
               #state="ngModel">
               <option [ngValue]="null">Select State</option>
               <option *ngFor="let state of states" [ngValue]="state">
@@ -68,19 +68,19 @@
         <div class="row form-group">
           <label class="col-lg-2"><b>Address</b> <span style="color:red">*</span></label>
           <div class="col-lg-4 ">
-            <textarea class="form-control border-input" id="txtaddress" [(ngModel)]="visitor.address" #address="ngModel"
+            <textarea class="form-control border-input" id="txtaddress" [(ngModel)]="visitor.address" #address="ngModel" autocomplete="off" maxlength="100"
               rows="2" name="address"></textarea>
           </div>
           <label class="col-lg-2"><b>Zip Code:</b> </label>
           <div class="col-lg-4 ">
-            <input id="txtzipcode" class="form-control border-input " placeholder="Zip Code"
+            <input id="txtzipcode" class="form-control border-input " placeholder="Zip Code" autocomplete="off" maxlength="10"
               [(ngModel)]="visitor.zipCode" #zipCode="ngModel" type="text" name="zipCode" />
           </div>
         </div>
         <div class="row form-group">
           <label class="col-lg-2"><b>Department:</b> <span style="color:red">*</span></label>
           <div class="col-lg-4 ">
-            <select required id="department" class="form-control border-input" name="department" (change)="bindEmployees(visitor.department)" 
+            <select required id="department" class="form-control border-input" name="department" (change)="bindEmployees(visitor.department)"  autocomplete="off"
               [(ngModel)]="visitor.department" #department="ngModel">
               <option [selected]="true" [ngValue]="null">Select Department</option>
               <option *ngFor="let department of departments" [ngValue]="department">
@@ -93,7 +93,7 @@
         
           <label class="col-lg-2"><b>To Meet:</b> <span style="color:red">*</span></label>
           <div class="col-lg-4 ">
-            <select id="ddlemployee" required class="form-control border-input" [(ngModel)]="visitor.toMeet"
+            <select id="ddlemployee" required class="form-control border-input" [(ngModel)]="visitor.toMeet" autocomplete="off"
               name="employee" #employee="ngModel">
               <option [ngValue]="null">Select Employee</option>
               <option *ngFor="let employee of employees" [ngValue]="employee">
@@ -107,7 +107,7 @@
         <div class="row form-group">
           <label class="col-lg-2"><b>Photo Identity Type</b> </label>
           <div class="col-lg-4 ">
-            <select id="ddlemployee" required class="form-control border-input" [(ngModel)]="visitor.photoIdType"
+            <select id="ddlemployee" required class="form-control border-input" [(ngModel)]="visitor.photoIdType" autocomplete="off"
               name="photoIdType" #photoIdentityType="ngModel">
               <option [ngValue]="null">Select Photo Identity Type</option>
               <option *ngFor="let photoIdentityType of photoIdTypes" [ngValue]="photoIdentityType">
@@ -122,7 +122,7 @@
 
           <label class="col-lg-2"><b>Identity Number:</b> </label>
           <div class="col-lg-4 ">
-            <input id="txtidentityno" required class="form-control border-input" placeholder="Identity Number"
+            <input id="txtidentityno" required class="form-control border-input" placeholder="Identity Number" autocomplete="off" maxlength="20"
               [(ngModel)]="visitor.identityNumber" #identityNumber="ngModel" type="text" name="identityNumber" />
             <span class="help-block" *ngIf="identityNumber.invalid && identityNumber.touched" style="color:red">Identity
               Number is
@@ -133,7 +133,7 @@
         <div class="row form-group">
           <label class="col-lg-2"><b>Location:</b> </label>
           <div class="col-lg-4 ">
-            <select id="location" required class="form-control border-input" [(ngModel)]="visitor.location"
+            <select id="location" required class="form-control border-input" [(ngModel)]="visitor.location" autocomplete="off"
               name="location" #location="ngModel">
               <option [ngValue]="null">Select Location </option>
               <option *ngFor="let location of locations" [ngValue]="location">
@@ -149,7 +149,7 @@
         <div class="row form-group">
           <label class="col-lg-2"><b>Purpose</b> <span style="color:red">*</span></label>
           <div class="col-lg-4 ">
-            <textarea required class="form-control border-input" id="purpose" rows="2" [(ngModel)]="visitor.purpose"
+            <textarea required class="form-control border-input" id="purpose" rows="2" [(ngModel)]="visitor.purpose" autocomplete="off"
               #purpose="ngModel" name="purpose"></textarea>
             <span class="help-block" *ngIf="purpose.invalid && purpose.touched" style="color:red">Purpose is
               required</span>
@@ -157,7 +157,7 @@
         
         <label class="col-lg-2 "><b>Comments:</b> </label>
         <div class="col-lg-4 ">
-          <textarea class="form-control border-input" id="comment" rows="2" [(ngModel)]="visitor.comment"
+          <textarea class="form-control border-input" id="comment" rows="2" [(ngModel)]="visitor.comment" autocomplete="off" maxlength="50"
             #comment="ngModel" name="comment"></textarea>
 
         </div>

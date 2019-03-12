@@ -15,7 +15,7 @@
                 <form>
                   <div class="col-xs-8 col-sm-6 col-md-6">
                     <div class="form-group">
-                      <input type="text" id="txtsearch" name="searchText" [(ngModel)]="searchText"
+                      <input type="text" id="txtsearch" name="searchText" [(ngModel)]="searchText" autocomplete="off" maxlength="15"
                         class="form-control border-input" placeholder="Search">
                     </div>
                   </div>
@@ -30,7 +30,6 @@
                 </form>
               </div>
               <div class="content table-responsive table-full-width">
-
                 <table class="table mb-0 table-striped" id="vList">
                   <thead>
 
@@ -45,7 +44,7 @@
                     <th>Action</th>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let visitor of visitorList|paginate: pager">
+                    <tr *ngFor="let visitor of visitorList|paginate: pager">                  
                       <td>{{visitor.firstName}}&nbsp;{{visitor.lastName}}</td>
                       <td>{{visitor.contactNumber}}</td>
                       <td>{{visitor.email}}</td>
@@ -54,7 +53,7 @@
                       <td>{{visitor.purpose}}</td>
                       <td>{{visitor.checkIn |date:'MM/dd/yyyy  h:mm a'}}</td>
                       <td> <button class="btn btn-info btn-fill btn-wd" *ngIf="visitor.checkOut.includes('0001')"
-                          (click)="checkOut(visitor.id)">Check Out</button>
+                          (click)="checkOut(visitor.id)">Check Out</button>  
                         {{ visitor.checkOut.includes('0001') ? '' :   visitor.checkOut|date:'MM/dd/yyyy h:mm a'}}</td>
                       <td><button class="btn "><a [routerLink]="['detail',visitor.id]" style="cursor:pointer;"
                             title="Click here to view detail"><i class="fa fa-info" aria-hidden="true"></i></a></button>
