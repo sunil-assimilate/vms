@@ -43,7 +43,7 @@ pageChange(newPage: number) {
   } 
   //To fetch user list 
   loadRoleList(search:any){  
-  this.serviceUtil.postData(AppSettings.base_url+ServiceUrl.role,this.roleSearch).subscribe(
+  this.serviceUtil.postData(AppSettings.base_url+ServiceUrl.rolesearch,this.roleSearch).subscribe(
     response=>{
       if(!response.IsError)
       {

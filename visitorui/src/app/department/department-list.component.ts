@@ -28,7 +28,6 @@ export class DepartmentListComponent implements OnInit {
       currentPage: 1,
       itemsPerPage: 10
     };
-
     this.route.queryParams.subscribe(params => {
       this.config.currentPage = params.page;
     });
@@ -39,8 +38,7 @@ export class DepartmentListComponent implements OnInit {
   ngOnInit() {
     this.loadDepartment(this.departmentSearch);
   }
-  loadDepartment(search:any) {
-    //alert(AppSettings.base_url+ServiceUrl.dList);
+  loadDepartment(search:any) {   
     this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.getDepartmentList,this.departmentSearch)
       .subscribe((response: any) => {
         if (!response.isError) {
