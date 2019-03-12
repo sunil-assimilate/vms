@@ -6,25 +6,25 @@
             <div class="form-group">
                 <label for="lblusername" class="text-info">User Name:</label><br>
                 <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" name="userName" id="txtUserName"
-                    [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" class="form-control border-input"
-                    placeholder="Name" [(ngModel)]="authentication.userName" #userName="ngModel" required>
-               
-                    </div>
-                    <span class="help-block" *ngIf="userName.invalid && userName.touched" style="color:red">User Name is
-                            required</span>
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" name="userName" id="txtUserName" maxlength="20"
+                        [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" class="form-control border-input"
+                        placeholder="Name" [(ngModel)]="authentication.userName" #userName="ngModel" required>
+
+                </div>
+                <span class="help-block" *ngIf="userName.invalid && userName.touched" style="color:red">User Name is
+                    required</span>
             </div>
             <div class="form-group">
                 <label for="password" class="text-info">Password:</label><br>
                 <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" id="txtPassword" name="password" class="form-control border-input"
-                    placeholder="Password" [(ngModel)]="authentication.password" #password="ngModel" required
-                    (paste)="pasteUrl($event)">
-               
-                    </div>
-                    <span class="help-block" *ngIf="password.errors?.required && password.touched"
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" id="txtPassword" name="password" class="form-control border-input" maxlength="15"
+                        placeholder="Password" [(ngModel)]="authentication.password" #password="ngModel" required
+                        (paste)="pasteUrl($event)">
+
+                </div>
+                <span class="help-block" *ngIf="password.errors?.required && password.touched"
                     style="color:red">Password is required</span>
             </div>
             <div class="form-group">

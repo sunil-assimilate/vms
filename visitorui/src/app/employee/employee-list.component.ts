@@ -28,7 +28,7 @@ export class EmployeeListComponent implements OnInit {
 
     this.config = {
       currentPage: 1,
-      itemsPerPage: 5
+      itemsPerPage: 10
     };
 
     this.route.queryParams.subscribe(params => {

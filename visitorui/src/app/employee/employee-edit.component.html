@@ -1,4 +1,3 @@
-
 <with-navbar></with-navbar>
 <header-main></header-main>
 <div class="container" style="padding-left:45px;">
@@ -6,65 +5,69 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Edit Employee</h3>
-      </div>     
-          <div class="panel-body">             
-              <div class="row form-group">
-                <label class="col-lg-2 ">First Name<span style="color:red">*</span></label>
-                <div class="col-lg-4 ">                  
-                  <input required id="txtFirstName" name="firstName" class="form-control border-input"
-                  placeholder="First Name" type="text" [(ngModel)]="employee.firstName" #firstName="ngModel" />
-                <span class="help-block" *ngIf="firstName.invalid && firstName.touched" style="color:red">First Name is
-                  required</span>
-                </div>
-              </div>
-              <div class="row form-group">
-                <label class="col-lg-2 ">Last Name<span style="color:red">*</span></label>
-                <div class="col-lg-4 ">
-                  <input required type="text" id="txtlastname" name="lastName" class="form-control border-input" placeholder="Last Name"
-                  [(ngModel)]="employee.lastName" #lastName="ngModel"/>
-                  <span class="help-block" *ngIf="lastName.invalid && lastName.touched" style="color:red">Last Name is
-                      required</span>
-                </div>
-              </div>             
-               
-                <div class="row form-group">
-                  <label class="col-lg-2 ">Contact No<span style="color:red">*</span></label>
-                  <div class="col-lg-4 ">
-                    <input required type="text" id="txtcell" name="mobile" class="form-control border-input" placeholder="Mobile"
-                      [(ngModel)]="employee.cell" #cell="ngModel" maxlength="10">
-                    <span class="help-block" *ngIf="cell.invalid && cell.touched" style="color:red">Contact No is
-                      required</span>
-                  </div>              
-                </div>
-                <div class="row form-group">
-                  <label class="col-lg-2 ">Email<span style="color:red">*</span></label>
-                  <div class="col-lg-4 ">
-                      <input required type="text" id="txtemail"  name="email" class="form-control border-input" placeholder="Email"
-                      [(ngModel)]="employee.email" #email="ngModel" >
-                    <span class="help-block" *ngIf="email.invalid && email.touched" style="color:red">Email is
-                      invalid</span>
-                  </div>
-                </div>
-              <div class="row form-group">
-                <label class="col-lg-2 ">Department<span style="color:red">*</span></label>
-                <div class="col-lg-4 ">               
-                  <select required id="departmentid" class="form-control border-input" name="department" #departmentid="ngModel" [(ngModel)]="employee.department" (change)="selected()" [compareWith]="compareFn">
-                      <option [ngValue]="null">Select Department</option>                      
-                    <option *ngFor="let department of departmentList" [ngValue]="department">{{department.name}}</option>
-                </select>
-                </div>
-              </div>
-                </div> 
-            
-            <div class="panel-footer">
-              <div>
-              <input type="submit" value="Save" class="btn btn-info btn-fill btn-wd"> &nbsp;             
-              <input type="button" value="Cancel" class="btn btn-info btn-primary-outline btn-wd" routerLink="/employee">
-            </div>
+      </div>
+      <div class="panel-body">
+        <div class="row form-group">
+          <label class="col-lg-2 ">First Name<span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <input required id="txtFirstName" name="firstName" class="form-control border-input" maxlength="15"
+              placeholder="First Name" type="text" [(ngModel)]="employee.firstName" #firstName="ngModel"
+              autocomplete="off" />
+            <span class="help-block" *ngIf="firstName.invalid && firstName.touched" style="color:red">First Name is
+              required</span>
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-lg-2 ">Last Name<span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <input required type="text" id="txtlastname" name="lastName" class="form-control border-input"
+              placeholder="Last Name" [(ngModel)]="employee.lastName" #lastName="ngModel" autocomplete="off"
+              maxlength="15" />
+            <span class="help-block" *ngIf="lastName.invalid && lastName.touched" style="color:red">Last Name is
+              required</span>
+          </div>
+        </div>
 
-            </div>
-     
+        <div class="row form-group">
+          <label class="col-lg-2 ">Contact No<span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <input required type="text" id="txtcell" name="mobile" class="form-control border-input"
+              placeholder="Mobile" [(ngModel)]="employee.cell" #cell="ngModel" maxlength="10" autocomplete="off">
+            <span class="help-block" *ngIf="cell.invalid && cell.touched" style="color:red">Contact No is
+              required</span>
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-lg-2 ">Email<span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <input required email type="text" id="txtemail" name="email" class="form-control border-input" placeholder="Email"
+              [(ngModel)]="employee.email" #email="ngModel" autocomplete="off">
+            <span class="help-block" *ngIf="email.errors?.required && email.touched" style="color:red">Email is
+              required</span>
+              <span class="help-block" *ngIf="email.errors?.email && email.touched" style="color:red">Email is
+                invalid</span> 
+          </div>
+        </div>
+        <div class="row form-group">
+          <label class="col-lg-2 ">Department<span style="color:red">*</span></label>
+          <div class="col-lg-4 ">
+            <select required id="departmentid" class="form-control border-input" name="department"
+              #departmentid="ngModel" [(ngModel)]="employee.department" (change)="selected()" [compareWith]="compareFn">
+              <option [ngValue]="null">Select Department</option>
+              <option *ngFor="let department of departmentList" [ngValue]="department">{{department.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <div>
+          <input type="submit" value="Save" class="btn btn-info btn-fill btn-wd"> &nbsp;
+          <input type="button" value="Cancel" class="btn btn-info btn-primary-outline btn-wd" routerLink="/employee">
+        </div>
+
+      </div>
+
     </div>
   </form>
 </div>
-
