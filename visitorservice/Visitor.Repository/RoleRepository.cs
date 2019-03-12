@@ -18,8 +18,7 @@ namespace Visitor.Repository
         }
 
         public async Task<List<Role>> GetRoles(Search search)
-        {
-            //return await _visitorContext.Roles.Find(Builders<Role>.Filter.Empty).ToListAsync();
+        {            
             int skip;
             int type;
             string sortBy;
@@ -36,11 +35,9 @@ namespace Visitor.Repository
                type = search.SortBy == "ASC" ? 1 : -1;
                sortBy = search.SortBy;
             }
-           var rolefilter = Builders<Role>.Filter.Regex(r => r.Name, "/"+search.Text+"/i");         
- 
+           var rolefilter = Builders<Role>.Filter.Regex(r => r.Name, "/"+search.Text+"/i");   
            return await _visitorContext.Roles.Find(rolefilter).Sort(new BsonDocument(sortBy,type)).Skip(skip).Limit(search.PageSize).ToListAsync();    
         }
-
         public async Task<Role> GetRole(string id)
         {
             return await _visitorContext.Roles.Find(_ => _.Id == id).SingleAsync();

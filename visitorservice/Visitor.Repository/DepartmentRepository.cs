@@ -61,10 +61,9 @@ namespace Visitor.Repository
                 type = search.SortBy == "ASC" ? 1 : -1;
                 sortBy = search.SortBy;
             }
-
                var nameFilter = Builders<Department>.Filter.Regex(r => r.Name, "/"+search.Text+"/i");
-
-            return await _visitorContext.Departments.Find(nameFilter).Sort(new BsonDocument(sortBy, type)).Skip(skip).Limit(search.PageSize).ToListAsync();
+               var codefilter=Builders<Department>.Filter.Regex(r=>r.Code,"/"+search.Text+"/i");
+            return await _visitorContext.Departments.Find(nameFilter| codefilter).Sort(new BsonDocument(sortBy, type)).Skip(skip).Limit(search.PageSize).ToListAsync();
         }
 
          public async Task<List<Department>> GetDepartments()
