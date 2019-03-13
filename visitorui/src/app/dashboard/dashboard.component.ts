@@ -10,14 +10,13 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let user = JSON.parse(localStorage.getItem('user'));  
-    console.log(user.role);     
-      if(user.role=='admin'){
-        this.isAdmin=true;  
+    let user = JSON.parse(localStorage.getItem('user'));     
+      if(user.role.toLowerCase()=='security'){
+        this.isAdmin=false;  
       }
       else
       {
-        this.isAdmin=false;  
+        this.isAdmin=true;  
       }
   }
 

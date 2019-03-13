@@ -23,11 +23,20 @@ export class CreateVisitorComponent implements OnInit {
   states: any;
   locations:any;
   employeeDisabled:Boolean;
+  isAdmin:boolean;
   constructor(private serviceUtil: ServiceUtil, private route: Router) { }
 
   ngOnInit() {
     this.getConfiguration();
     this.initializeDefaultValues();
+    let user = JSON.parse(localStorage.getItem('user'));  
+    if(user.role.toLowerCase()=='security'){
+      this.isAdmin=false;  
+    }
+    else
+    {
+      this.isAdmin=true;  
+    }
   }
 
   initializeDefaultValues()

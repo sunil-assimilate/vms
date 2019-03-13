@@ -25,6 +25,7 @@ export class VisitorListComponent implements OnInit {
   pager: any; 
   searchText: string;
   visitorList: Array<Visitor>;
+  isAdmin:boolean;
   constructor(private serviceUtil: ServiceUtil, private route: Router, private _route: ActivatedRoute) {
     this.pager = {
       currentPage: 1,
@@ -32,8 +33,6 @@ export class VisitorListComponent implements OnInit {
       totalItems:0
     };
     this.visitorList = new Array<Visitor>();
-  
-
     this._route.queryParams.subscribe(params => {
       this.pager.currentPage = params.page;
       this.getVisitors();
@@ -45,6 +44,14 @@ export class VisitorListComponent implements OnInit {
   }
   ngOnInit() { 
     this.getVisitors();
+    let user = JSON.parse(localStorage.getItem('user'));  
+    if(user.role.toLowerCase()=='security'){
+      this.isAdmin=false;  
+    }
+    else
+    {
+      this.isAdmin=true;  
+    }
   }
 
   getVisitors() { 
