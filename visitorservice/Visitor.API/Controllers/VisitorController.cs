@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;  
-using Microsoft.Extensions.Logging; 
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using visitor.service.services;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Visitor.Repository;
-using entity= Visitor.Entity;
+using entity = Visitor.Entity;
 using Visitor.Entity;
 
 namespace visitor.service.Controllers
@@ -48,7 +48,7 @@ namespace visitor.service.Controllers
             }
             catch (Exception ex)
             {
-            
+
                 response.IsError = true;
                 response.ErrorMessage = "Some error occured, Please contact to administrator";
             }
@@ -61,8 +61,14 @@ namespace visitor.service.Controllers
         {
             //TODO: Handle error in the middleware and add try catch there 
             IListModelResponse<entity.Visitor> response = new ListModelResponse<entity.Visitor>();
+           
             try
             {
+                if (search.TotalCount == 0)
+                {
+                    response.TotalCount = _visitorRepository.GetVisitorsCount();
+                }
+
                 _logger.LogInformation(entities.LoggingEvents.ListItems, "respository: {0}", search);
                 response.Model = await _visitorRepository.GetVisitors(search);
                 response.Message = "Listed visitors successfully";
@@ -124,7 +130,7 @@ namespace visitor.service.Controllers
         }
 
         [HttpPut("checkout/{id}")]
-        public async Task<IActionResult> Checkout(string id,[FromBody]Search search)
+        public async Task<IActionResult> Checkout(string id, [FromBody]Search search)
         {
             IListModelResponse<entity.Visitor> response = new ListModelResponse<entity.Visitor>();
 
@@ -132,7 +138,7 @@ namespace visitor.service.Controllers
             {
                 _logger.LogInformation(entities.LoggingEvents.InsertItem, "Visitor Checkout, id:{0}", id);
                 await _visitorRepository.CheckOut(id);
-                response.Model =  await _visitorRepository.GetVisitors(search);
+                response.Model = await _visitorRepository.GetVisitors(search);
                 response.Message = "Visitor checked out";
             }
             catch (Exception ex)
@@ -161,9 +167,9 @@ namespace visitor.service.Controllers
             try
             {
                 var file = Request.Form.Files[0];
-                 
-              await _imageService.UploadImage(file);
-              response.Message = "Image uploaded successfully";
+
+                await _imageService.UploadImage(file);
+                response.Message = "Image uploaded successfully";
             }
             catch (Exception ex)
             {

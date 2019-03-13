@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace visitor.service
 {
-public class ListModelResponse<T> : IListModelResponse<T>
+    public class ListModelResponse<T> : IListModelResponse<T>
     {
         public bool IsError { get; set; }
         public string ErrorMessage { get; set; }
@@ -10,8 +10,9 @@ public class ListModelResponse<T> : IListModelResponse<T>
         public string Token { get; set; }
         public string RefreshToken { get; set; }
         public double ExpiresAt { get; set; }
-        public IEnumerable<T> Model { get; set; } 
-}
+        public IEnumerable<T> Model { get; set; }
 
+        public long TotalCount { get; set; }
+    }
 }
 

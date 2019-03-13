@@ -19,41 +19,43 @@ export class VisitorListComponent implements OnInit {
     "sortBy": "",
     "pageNumber": 1,
     "pageSize": 10,
-    "Text": ""
+    "Text": "",
+    "totalCount": 0
   }
-  pager: any;
-  collection = [];
-
+  pager: any; 
   searchText: string;
   visitorList: Array<Visitor>;
   constructor(private serviceUtil: ServiceUtil, private route: Router, private _route: ActivatedRoute) {
     this.pager = {
       currentPage: 1,
-      itemsPerPage: 8
+      itemsPerPage: 10,
+      totalItems:0
     };
-
-    for (let i = 1; i <= 100; i++) {
-      this.collection.push(`item ${i}`);
-    }
+    this.visitorList = new Array<Visitor>();
+  
 
     this._route.queryParams.subscribe(params => {
       this.pager.currentPage = params.page;
+      this.getVisitors();
     });
   }
 
   pageChange(newPage: number) {
     this.route.navigate(['/visitor'], { queryParams: { page: newPage } });
   }
-  ngOnInit() {
+  ngOnInit() { 
     this.getVisitors();
   }
 
-  getVisitors() {
+  getVisitors() { 
+    this.search.pageNumber = this.pager.currentPage;
     this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.visitorList, this.search)
       .subscribe(
         response => {
           if (!response.IsError) {
-            this.visitorList = response.model;
+            this.search.totalCount = response.TotalCount;
+            this.pager.totalItems = response.totalCount;
+            this.visitorList =response.model;
           }
           else {
             swal.fire({

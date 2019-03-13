@@ -13,6 +13,8 @@ namespace Visitor.Entity
         public int PageNumber { get; set; }
 
         public string Text { get; set; }
+
+        public long TotalCount {get;set;}
     }
 
 }
