@@ -70,8 +70,7 @@ export class EmployeeAddComponent implements OnInit {
               this.route.navigate(['employee']);
             }
           });
-      } 
-      
+      }       
       else {
         swal.fire({
           type: 'error', text: response.message, showCancelButton: false,

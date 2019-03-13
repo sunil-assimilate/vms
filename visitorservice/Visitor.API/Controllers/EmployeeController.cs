@@ -87,7 +87,7 @@ namespace visitor.service.Controllers
               bool isresult= await _employeeRepository.isEmpCodeExists(employee.EmpCode);  
               if(isresult)
               {   
-                response.IsError = true;           
+                response.IsError = true;                             
                 response.Message = "Employee Code is already exist"; 
                 return Ok(response);              
               }               
@@ -102,7 +102,6 @@ namespace visitor.service.Controllers
                 response.ErrorMessage = "Could not add employee";
                 return BadRequest(response);
             }
-
             return Ok(response);
         }
 
