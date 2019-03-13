@@ -24,11 +24,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   authenticate(authenticate: Authentication): void { 
+    let errorMessage:string;
     this.spinner.show();
     this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.validateUser, this.authentication).subscribe(
       response => {
         this.spinner.hide();
-        if (!response.IsError) {
+         if (!response.IsError) {
           console.log(response.token);
           const serviceToken = { 'expiresAt': response.expiresAt, 'token': response.token };
           const user = {
@@ -40,17 +41,20 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("role", user.role);  
           this.route.navigate(['dashboard']);
         } else {
+          this.spinner.hide();
           swal.fire({
             type: 'error', text: response.message, showCancelButton: false,
             confirmButtonText: 'OK'
           });
         }
       }, error => {
+        this.spinner.hide();
         CommonUtil.handleError(error);
+        
       }
     )
   }
-
+//To prevent pasting password
   pasteUrl(event) {
     return false;
   }

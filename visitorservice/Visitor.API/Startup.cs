@@ -103,6 +103,7 @@ namespace Visitor.API
 
             app.UseHttpsRedirection();
             app.UseCors("CorsPolicy");
+            app.UseStaticFiles();
             app.UseMvc();
             //  app.UseAuthentication();
         }
