@@ -34,6 +34,20 @@ namespace Visitor.Repository
             return true;
         }
 
+         public async Task<bool> isEmpCodeExists(string empCode)
+        {
+            try
+            {
+            var empresult= await _visitorContext.Employees.Find(p=> p.EmpCode == empCode).SingleAsync();
+            return true;
+            }
+            catch(Exception ex)
+            {
+            return false;
+            }
+            
+        }
+
         public async Task<Employee> EditEmployee(Employee emp)
         {
           var result =  await _visitorContext.Employees.ReplaceOneAsync(Builders<Employee>.Filter.Eq("Id", emp.Id), emp);
