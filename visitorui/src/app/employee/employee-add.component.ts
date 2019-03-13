@@ -58,20 +58,21 @@ export class EmployeeAddComponent implements OnInit {
   return true;
 
 }
-
  //To add a Employee
  createEmployee(newEmployee: Employee) { 
   this.serviceUtil.postData(AppSettings.base_url + "employee", this.employee)
     .subscribe((response: any) => {
-      if (!response.isError) {
-        swal.fire({ type: 'success', text: 'Saved successfully', showCancelButton: false, confirmButtonText: 'OK' })
+      if (!response.isError) {        
+        swal.fire({ type: 'success', text: response.message, showCancelButton: false, confirmButtonText: 'OK' })
           .then((result) => {
             if (response.isError === true && result.value === true) {
             } else {
               this.route.navigate(['employee']);
             }
           });
-      } else {
+      } 
+      
+      else {
         swal.fire({
           type: 'error', text: response.message, showCancelButton: false,
           confirmButtonText: 'OK'

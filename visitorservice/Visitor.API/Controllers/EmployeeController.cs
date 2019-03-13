@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Visitor.Entity;
-using Visitor.Repository; 
+using Visitor.Repository;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-using Microsoft.Net.Http.Headers; 
+using Microsoft.Net.Http.Headers;
 
 namespace visitor.service.Controllers
 {
@@ -41,13 +41,12 @@ namespace visitor.service.Controllers
                     response.Message = "Employee does not exist";
                     return BadRequest(response);
                 }
-
                 response.Model = employee;
                 response.Message = "Employee exists in the system";
             }
             catch (Exception ex)
             {
-                _logger.LogError(entities.LoggingEvents.GetItem,ex,"Error while fetching an employee, id:{0}", id);
+                _logger.LogError(entities.LoggingEvents.GetItem, ex, "Error while fetching an employee, id:{0}", id);
                 response.IsError = true;
                 response.ErrorMessage = "Some error occured, Please contact to administrator";
             }
@@ -81,11 +80,17 @@ namespace visitor.service.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Add([FromBody]Employee employee)
-        {
+        {             
             ISingleModelResponse<Employee> response = new SingleModelResponse<Employee>();
-
             try
-            {
+            {                
+              bool isresult= await _employeeRepository.isEmpCodeExists(employee.EmpCode);  
+              if(isresult)
+              {   
+                response.IsError = true;           
+                response.Message = "Employee Code is already exist"; 
+                return Ok(response);              
+              }               
                 Employee emp = await _employeeRepository.AddEmployee(employee);
                 response.Message = "Employee added successfully";
                 response.Model = employee;
@@ -95,14 +100,13 @@ namespace visitor.service.Controllers
                 _logger.LogError(entities.LoggingEvents.InsertItem, ex, "Error while adding a new employee, Request: {0}", employee);
                 response.IsError = true;
                 response.ErrorMessage = "Could not add employee";
-
                 return BadRequest(response);
             }
 
             return Ok(response);
         }
 
-         [HttpPut]
+        [HttpPut]
         public async Task<IActionResult> Edit([FromBody]Employee employee)
         {
             ISingleModelResponse<Employee> response = new SingleModelResponse<Employee>();
@@ -125,7 +129,7 @@ namespace visitor.service.Controllers
             return Ok(response);
         }
 
-         [HttpPost("importemployees"), DisableRequestSizeLimit]
+        [HttpPost("importemployees"), DisableRequestSizeLimit]
         public async Task<IActionResult> ImportEmployees()
         {
             ISingleModelResponse<dynamic> response = new SingleModelResponse<dynamic>();
@@ -141,7 +145,7 @@ namespace visitor.service.Controllers
 
                         IList<Employee> employees = new List<Employee>();
                         IList<Department> departments = _departmentRepository.GetDepartments().Result;
-                        _logger.LogInformation(entities.LoggingEvents.ImportEmployee,null,"line from Employees: {0}", departments);
+                        _logger.LogInformation(entities.LoggingEvents.ImportEmployee, null, "line from Employees: {0}", departments);
                         while (!reader.EndOfStream)
                         {
                             string line = reader.ReadLine();
@@ -149,7 +153,7 @@ namespace visitor.service.Controllers
                             string[] columns = line.Split(",");
                             if (columns.Count() == 5)
                             {
-                              
+
                                 Employee employee = new Employee();
                                 if (!String.IsNullOrEmpty(columns[0]))
                                 {
@@ -176,7 +180,7 @@ namespace visitor.service.Controllers
                             await _employeeRepository.AddEmployees(employees);
 
                             response.IsError = false;
-                            response.Model = new {TotalCount = employees.Count, SuccessCount = 10};
+                            response.Model = new { TotalCount = employees.Count, SuccessCount = 10 };
                         }
                     }
                 }
@@ -187,7 +191,6 @@ namespace visitor.service.Controllers
                 response.Message = "Could not import Employees, Please check again";
                 return BadRequest("Upload Failed: " + ex.Message);
             }
-
             return Ok(response);
         }
     }
