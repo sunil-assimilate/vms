@@ -1,7 +1,7 @@
 <with-navbar></with-navbar>
 <header-main></header-main>
 <div class="container" style="padding-left:45px;">
-  <form #editemployeeForm="ngForm" (ngSubmit)="editEmployee(employee)">
+  <form #editemployeeForm="ngForm" (ngSubmit)="editEmployee()">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Edit Employee</h3>
@@ -63,7 +63,7 @@
           <label class="col-lg-2 ">Department<span style="color:red">*</span></label>
           <div class="col-lg-4 ">
             <select required id="departmentid" class="form-control border-input" name="department"
-              #departmentid="ngModel" [(ngModel)]="employee.department" (change)="selected()" [compareWith]="compareFn">
+              #departmentid="ngModel" [(ngModel)]="employee.department" [compareWith]="compareFn">
               <option [ngValue]="null">Select Department</option>
               <option *ngFor="let department of departmentList" [ngValue]="department">{{department.name}}</option>
             </select>
