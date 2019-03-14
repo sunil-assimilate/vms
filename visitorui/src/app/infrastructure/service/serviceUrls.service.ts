@@ -23,6 +23,7 @@ export class ServiceUrl {
     static importEmployee = 'Employee/Import';
 
     static visitorList = 'visitor/search';
+    static visitorImage = 'visitor/uploadimage';
     static visitor ='visitor/';
     static visitorCheckout = "visitor/checkout/"; 
 }

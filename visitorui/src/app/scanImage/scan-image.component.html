@@ -1,0 +1,15 @@
+<with-navbar></with-navbar>
+<header-main></header-main>
+<div class="container" style="padding-left:45px;">
+<div class="width=300; height=200">
+<webcam (imageCapture)="handleImage($event)" [trigger]="triggerObservable"></webcam>
+<br/>
+</div>
+<button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
+<br/>
+<button class="actionBtn" (click)="next();">Next</button>
+
+<div>
+	<img [src]="webcamImage.imageAsDataUrl" />
+</div>
+</div>

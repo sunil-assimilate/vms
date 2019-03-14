@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { PARAMETERS } from '@angular/core/src/util/decorators';
 
 const headers = { 'headers': new HttpHeaders({ 'content-type': 'application/json' })};
 @Injectable({
@@ -44,5 +45,16 @@ public uploadExcel(serviceUrl: string,files: string,): Observable<any> {
     return this.httpClient.post(serviceUrl, formdata, {
     responseType: 'json'
   });
+}
+
+public uploadImage(serviceUrl: string, visitorId:string, type:string,image:Blob): Observable<any>
+{ 
+  var fd = new FormData(document.forms[0]);
+  fd.append("x.jpeg", image,"x");
+  console.log(image);
+  let params = new HttpParams().set('visitorId', visitorId).set("type", type);
+  
+  let headers = { 'headers': new HttpHeaders({ 'Content-Type': 'multipart/form-data' })};
+  return this.httpClient.post(serviceUrl,  fd, {params:params});
 }
 }

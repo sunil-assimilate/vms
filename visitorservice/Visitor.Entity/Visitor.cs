@@ -23,6 +23,15 @@ namespace Visitor.Entity
         [BsonElement("Country")]
         public DropDownValue Country { get; set; }
 
+        [BsonElement("ProfilePicture")]
+        public  byte[] Image {get;set;}
+
+        [BsonElement("PhotoIdentity")]
+        public  byte[] PhotoIdentity {get;set;}
+
+        [BsonElement("Signature")]
+        public byte[] Signature {get;set;}
+
         [BsonElement("State")]
         public StateValue State { get; set; }
 

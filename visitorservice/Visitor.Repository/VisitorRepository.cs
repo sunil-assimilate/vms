@@ -6,7 +6,7 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using Microsoft.Extensions.Logging;
 using entity = Visitor.Entity;
-using Visitor.Entity;
+using Visitor.Entity; 
 
 namespace Visitor.Repository
 {
@@ -96,7 +96,7 @@ namespace Visitor.Repository
             //   }
 
 
-                await _visitorContext.Visitors.InsertOneAsync(visitor);
+               await _visitorContext.Visitors.InsertOneAsync(visitor);
                 return visitor;
             }
             catch (Exception ex)
@@ -152,6 +152,30 @@ namespace Visitor.Repository
                 // log or manage the exception
                 throw ex;
             }
+        }
+
+        public async void AddImage(string visitorId, string type, byte[] file)
+        {  
+            var builder = Builders<entity.Visitor>.Filter;
+            var filters = builder.Eq(c => c.Id, visitorId);
+
+            
+            _logger.LogInformation(1002, null,"image type:{0}", type);
+            string columnToBeUpdated = "";
+            if(type == "profilePicture")
+            {
+              columnToBeUpdated = "ProfilePicture";
+            }
+            else if(type == "PhotoIdentity")
+            {
+               columnToBeUpdated = "PhotoIdentity";
+            }
+            else if(type == "signature")
+            {
+                columnToBeUpdated = "Signature";
+            }
+       
+           await _visitorContext.Visitors.FindOneAndUpdateAsync(filters, Builders<entity.Visitor>.Update.Set(columnToBeUpdated, file));
         }
     }
 }

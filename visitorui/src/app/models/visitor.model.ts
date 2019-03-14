@@ -20,6 +20,7 @@ export class Visitor{
     department:  Dropdown;
     toMeet: Dropdown;
     identityNumber:string;
+    image: string;
     photoIdType: Dropdown;
     location: Dropdown;
     photoIdPath : string;

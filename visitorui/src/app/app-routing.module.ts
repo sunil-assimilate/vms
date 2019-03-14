@@ -17,6 +17,7 @@ import { EmployeeEditComponent } from './employee/employee-edit.component'
 import { EditVisitorComponent } from './visitor/edit-visitor.component';
 import { VisitorDetailComponent } from './visitor/visitor-detail.component';
 import { EditRoleComponent } from './role/edit-role.component';
+import { ScanImageComponent } from './scanImage/scan-image.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -37,7 +38,8 @@ const routes: Routes = [
   { path: 'visitor/createvisitor', component: CreateVisitorComponent },
   { path: 'visitor/edit/:id', component: EditVisitorComponent },
   { path: 'visitor/detail/:id', component: VisitorDetailComponent },
-  { path: 'role/edit/:id', component: EditRoleComponent }
+  { path: 'role/edit/:id', component: EditRoleComponent },
+  { path: 'visitor/scan/:id/:type', component: ScanImageComponent}
 ];
 
 @NgModule({

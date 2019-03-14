@@ -19,5 +19,7 @@ namespace Visitor.Repository
        Task<entity.Visitor> EditVisitor(entity.Visitor visitor);
 
        Task<bool> CheckOut(string id);
+
+       void AddImage(string visitorId, string type, byte[] file);
     }
 }

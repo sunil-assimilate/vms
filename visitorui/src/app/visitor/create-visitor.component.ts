@@ -104,7 +104,7 @@ export class CreateVisitorComponent implements OnInit {
           swal.fire({ type: 'success', text: 'Saved successfully', showCancelButton: false, confirmButtonText: 'OK' })
             .then((result) => {
               if (response.isError === false) {
-                this.route.navigate(['/visitor']);
+                this.route.navigate(['/visitor/scan', response.model.id,"profilePicture"]);
               }
             });
         } else {

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { WebcamModule } from 'ngx-webcam';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -31,6 +32,7 @@ import { EditRoleComponent } from './role/edit-role.component'
 import { VisitorDetailComponent } from './visitor/visitor-detail.component';
 import { EditVisitorComponent } from './visitor/edit-visitor.component';
 import { GaurdNavbarComponent } from './gaurd-navbar/gaurd-navbar.component';
+import {ScanImageComponent } from './scanImage/scan-image.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
@@ -56,7 +58,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
      EmployeeEditComponent,
      EditRoleComponent,
      GaurdNavbarComponent,
-    
+     ScanImageComponent
  ],
   imports: [
     BrowserModule,
@@ -64,8 +66,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    NgxSpinnerModule
-       
+    NgxSpinnerModule,
+    WebcamModule   
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
     ServiceUtil

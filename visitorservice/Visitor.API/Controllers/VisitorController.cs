@@ -61,7 +61,7 @@ namespace visitor.service.Controllers
         {
             //TODO: Handle error in the middleware and add try catch there 
             IListModelResponse<entity.Visitor> response = new ListModelResponse<entity.Visitor>();
-           
+
             try
             {
                 if (search.TotalCount == 0)
@@ -159,16 +159,22 @@ namespace visitor.service.Controllers
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        [HttpPost("uploadimage")]
-        public async Task<IActionResult> UploadImage()
+
+        [HttpPost("uploadimage"), DisableRequestSizeLimit]
+        public async Task<IActionResult> UploadImage([FromQuery]string visitorId, [FromQuery] string type)
         {
             ISingleModelResponse<object> response = new SingleModelResponse<object>();
-
+ 
             try
             {
-                var file = Request.Form.Files[0];
-
-                await _imageService.UploadImage(file);
+                IFormFile file = Request.Form.Files[0];
+                using (var memoryStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(memoryStream);
+                    byte[] bytes = memoryStream.ToArray();
+                     _visitorRepository.AddImage(visitorId,type,bytes);
+                }
+               
                 response.Message = "Image uploaded successfully";
             }
             catch (Exception ex)
