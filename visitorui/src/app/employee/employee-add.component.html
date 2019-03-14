@@ -28,7 +28,7 @@
               <div class="row form-group">
                 <label class="col-lg-2 ">First Name<span style="color:red">*</span></label>
                 <div class="col-lg-4 ">
-                  <input id="txtfirstName" class="form-control border-input" placeholder="First Name" type="text"
+                  <input id="txtfirstName" class="form-control border-input"  (keypress)="alphabetsOnly($event)" placeholder="First Name" type="text"
                     maxlength="15" name="firstName" [(ngModel)]="employee.firstName" #firstName="ngModel" required
                     autocomplete="off" />
                   <span class="help-block" *ngIf="firstName.invalid && firstName.touched" style="color:red">First Name
@@ -39,7 +39,7 @@
               <div class="row form-group">
                 <label class="col-lg-2 ">Last Name<span style="color:red">*</span></label>
                 <div class="col-lg-4 ">
-                  <input required id="txtlastName" name="lastName" class="form-control border-input" maxlength="15"
+                  <input required id="txtlastName" name="lastName" class="form-control border-input"  (keypress)="alphabetsOnly($event)" maxlength="15"
                     placeholder="Last Name" type="text" [(ngModel)]="employee.lastName" #lastName="ngModel"
                     autocomplete="off" />
                   <span class="help-block" *ngIf="lastName.invalid && lastName.touched" style="color:red">Last Name is

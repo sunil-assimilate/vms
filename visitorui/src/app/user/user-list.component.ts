@@ -9,7 +9,6 @@ import { map } from 'rxjs/operators';
 import swal from 'sweetalert2';
 import { ChangePassword } from '../models/changepassword.model';
 
-
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -47,18 +46,17 @@ export class UserListComponent implements OnInit {
       this.loadUserList();
     });
 
+    
+
     for (let i = 1; i <= 100; i++) {
       this.collection.push(`item ${i}`);
     }
   }
-
   pageChange(newPage: number) {
     this.router.navigate(['/user'], { queryParams: { page: newPage } });
   }
-
   ngOnInit() {
     this.loadUserList();
-
   }
   //To fetch user list 
   loadUserList() {    

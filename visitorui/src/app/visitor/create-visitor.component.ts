@@ -56,9 +56,14 @@ export class CreateVisitorComponent implements OnInit {
       return false;
     }
     return true;
-
   }
-
+  alphabetsOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)) {
+      return true;
+    }
+    return false;
+  }
   getConfiguration() {
     // this.serviceUtil.getData(AppSettings.base_url + ServiceUrl.configuration)
     this.serviceUtil.getData(AppSettings.base_url + "configuration")

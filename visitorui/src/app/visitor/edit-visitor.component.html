@@ -71,7 +71,7 @@
           </div>
         <label class="col-lg-2"><b>Zip Code:</b> </label>
         <div class="col-lg-4 ">
-            <input id="txtzipcode" class="form-control border-input " placeholder="Zip Code" [(ngModel)]="visitor.zipCode" maxlength="10" #zipCode="ngModel" autocomplete="off" type="text" name="zipCode" />
+            <input id="txtzipcode" class="form-control border-input " placeholder="Zip Code" [(ngModel)]="visitor.zipCode" maxlength="6" #zipCode="ngModel" autocomplete="off" type="text" name="zipCode" />
         </div>     
       </div>
        <div class="row form-group">
@@ -103,7 +103,7 @@
    
     </div>
     <div class="row form-group">
-        <label class="col-lg-2"><b>Photo Identity</b> </label>
+        <label class="col-lg-2"><b>Photo Identity</b> <span style="color:red">*</span></label>
         <div class="col-lg-4 ">
             <select id="ddlemployee" class="form-control border-input" [(ngModel)] = "visitor.photoIdType" name="photoIdType" autocomplete="off" #photoIdentityType="ngModel" [compareWith]="compareFn">
                 <option  [ngValue]="null">Select Photo Identity Type</option>
@@ -116,7 +116,7 @@
         </div>
 
       
-      <label class="col-lg-2"><b>Identity Number:</b> </label>
+      <label class="col-lg-2"><b>Identity Number:</b><span style="color:red">*</span> </label>
       <div class="col-lg-4 ">
           <input id="txtidentityno" class="form-control border-input" placeholder="Identity Number" autocomplete="off" [(ngModel)]="visitor.identityNumber" #identityNumber="ngModel" type="text" name="identityNumber" />
           <span class="help-block" *ngIf="identityNumber.invalid && identityNumber.touched" style="color:red">Identity Number is
@@ -125,7 +125,7 @@
     </div> 
 
     <div class="row form-group">
-      <label class="col-lg-2"><b>Location:</b> </label>
+      <label class="col-lg-2"><b>Seating Location:</b><span style="color:red">*</span> </label>
       <div class="col-lg-4 ">
         <select id="location" required class="form-control border-input" [(ngModel)]="visitor.location" autocomplete="off"
           name="location" #location="ngModel" [compareWith]="compareFn">
@@ -137,14 +137,11 @@
         <span class="help-block" *ngIf="location.invalid && location.touched"
         style="color:red"> Location is required</span>
       </div>
-    </div>
-
-     
+    </div>     
     <div class="row form-group">
         <label class="col-lg-2"><b>Purpose</b> <span style="color:red">*</span></label>
         <div class="col-lg-4 ">
           <textarea class="form-control border-input" id="txtperpose" rows="2"  [(ngModel)]="visitor.purpose" autocomplete="off" #purpose="ngModel" name="purpose"></textarea>
-
         </div>
       <label class="col-lg-2 "><b>comments:</b> </label>
       <div class="col-lg-4 ">         

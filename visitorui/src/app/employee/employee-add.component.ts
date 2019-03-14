@@ -7,6 +7,7 @@ import { ServiceUrl } from '../infrastructure/service/serviceUrls.service';
 import { CommonUtil } from '../infrastructure/commonutil.component';
 import { ServiceUtil } from '../infrastructure/service/serviceUtil.sevice';
 import swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class EmployeeAddComponent implements OnInit {
      department:null,
      empCode:null
   }
-  constructor(private serviceUtil: ServiceUtil, private route: Router) { }
+  constructor(private serviceUtil: ServiceUtil, private route: Router,private spinner:NgxSpinnerService) { }
   ngOnInit() {
     this.bindDepartment();
   }
@@ -56,12 +57,20 @@ export class EmployeeAddComponent implements OnInit {
     return false;
   }
   return true;
-
+}
+alphabetsOnly(event): boolean {
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)) {
+    return true;
+  }
+  return false;
 }
  //To add a Employee
  createEmployee(newEmployee: Employee) { 
+  this.spinner.show();
   this.serviceUtil.postData(AppSettings.base_url + "employee", this.employee)
     .subscribe((response: any) => {
+      this.spinner.hide();
       if (!response.isError) {        
         swal.fire({ type: 'success', text: response.message, showCancelButton: false, confirmButtonText: 'OK' })
           .then((result) => {
@@ -72,6 +81,7 @@ export class EmployeeAddComponent implements OnInit {
           });
       }       
       else {
+        this.spinner.hide();
         swal.fire({
           type: 'error', text: response.message, showCancelButton: false,
           confirmButtonText: 'OK'
@@ -84,13 +94,13 @@ export class EmployeeAddComponent implements OnInit {
 // to reset contrl
 resetControl()
 {
+  this.employee.empCode=null;
   this.employee.firstName=null;
   this.employee.lastName=null;
   this.employee.cell=null;
   this.employee.email=null;  
   this.employee.department=null;
 }
-
 selected(){
   console.log(this.employee);
 }

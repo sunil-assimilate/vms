@@ -36,7 +36,6 @@ namespace Visitor.Repository
             {
                 // throw the error that employee not found.
             }
-
             return department;
         }
         // public async Task<Employee> GetEmployee(string id)
@@ -49,7 +48,7 @@ namespace Visitor.Repository
             int type;
             string sortBy;
 
-            if (search == null || search.PageNumber == 0 || String.IsNullOrEmpty(search.SortBy))
+            if (search == null || search.PageNumber == 0 || String.IsNullOrEmpty(search.SortType))
             {
                 skip = 0;
                 type = 1;
@@ -57,7 +56,7 @@ namespace Visitor.Repository
             }
             else
             {
-                skip = search.PageNumber == 0 ? 0 : search.PageNumber * search.PageSize - 1;
+                skip = search.PageNumber > 2 ? search.PageNumber-1 : search.PageSize;
                 type = search.SortBy == "ASC" ? 1 : -1;
                 sortBy = search.SortBy;
             }

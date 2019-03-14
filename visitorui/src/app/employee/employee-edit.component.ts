@@ -33,6 +33,24 @@ constructor(private serviceUtil: ServiceUtil, private route: Router, private _ro
     this.bindDepartment();
     this.employeeDetail(this.employeeId);
   }
+
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+  alphabetsOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)) {
+      return true;
+    }
+    return false;
+  }
+
+
+
     // to bind role dropdown  
     bindDepartment() {       
       this.serviceUtil.putData(AppSettings.base_url+ServiceUrl.configuration, ServiceUrl.getDepartmentList)
