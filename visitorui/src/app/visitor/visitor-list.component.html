@@ -27,8 +27,8 @@
                   <div class="col-xs-4 col-sm-6 col-md-6">
                     <div class="form-group">
                       <input type="submit" value="Search" (click)="searchVisitor()"
-                      class="btn btn-info btn-primary-outline btn-wd" > &nbsp;
-                      <input type="submit" value="Add New" class="btn btn-info btn-primary-outline btn-wd"
+                      class="btn btn-info btn-fill btn-wd" > &nbsp;
+                      <input type="submit" value="Add New" class="btn btn-info btn-fill btn-wd"
                         routerLink="createvisitor">
                     </div>
                   </div>
@@ -56,7 +56,7 @@
                       <td> {{visitor.toMeet.name }}</td>
                       <td>{{visitor.purpose}}</td>
                       <td>{{visitor.checkIn |date:'MM/dd/yyyy  h:mm a'}}</td>
-                      <td> <button class="btn btn-info btn-primary-outline btn-wd" *ngIf="visitor.checkOut.includes('0001')"
+                      <td> <button class="btn btn-info btn-fill btn-wd" *ngIf="visitor.checkOut.includes('0001')"
                           (click)="checkOut(visitor.id)">Check Out</button>  
                         {{ visitor.checkOut.includes('0001') ? '' : visitor.checkOut|date:'MM/dd/yyyy h:mm a'}}</td>
                       <td><button class="btn "><a [routerLink]="['detail',visitor.id]" style="cursor:pointer;"
