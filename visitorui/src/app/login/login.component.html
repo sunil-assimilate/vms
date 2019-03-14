@@ -8,7 +8,7 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <input type="text" name="userName" id="txtUserName" maxlength="20" autocomplete="off"  class="form-control border-input"
-                        placeholder="Name" [(ngModel)]="authentication.userName" #userName="ngModel" required>
+                        placeholder="User Name" [(ngModel)]="authentication.userName" #userName="ngModel" required>
 
                 </div>
                 <span class="help-block" *ngIf="userName.invalid && userName.touched" style="color:red">User Name is
