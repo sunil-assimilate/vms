@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { WebcamModule } from 'ngx-webcam';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module'; 
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -14,7 +16,6 @@ import { VisitorListComponent } from './visitor/visitor-list.component';
 import { CreateVisitorComponent } from './visitor/create-visitor.component';
 import { EmployeeListComponent } from './employee/employee-list.component';
 import { EmployeeAddComponent } from './employee/employee-add.component'
-import { FormsModule }   from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule} from '@angular/common/http'; 
 import { HttpRequestInterceptor } from './infrastructure/interceptor.service';
@@ -34,6 +35,9 @@ import { EditVisitorComponent } from './visitor/edit-visitor.component';
 import { GaurdNavbarComponent } from './gaurd-navbar/gaurd-navbar.component';
 import {ScanImageComponent } from './scanImage/scan-image.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { DigitalSignComponent } from './digital-sign/digital-sign.component';
+import { SignatureComponent } from './signature/signature.component';
+import { SignaturePadModule } from 'angular2-signaturepad';
 
 @NgModule({
   declarations: [
@@ -58,16 +62,20 @@ import { NgxSpinnerModule } from 'ngx-spinner';
      EmployeeEditComponent,
      EditRoleComponent,
      GaurdNavbarComponent,
-     ScanImageComponent
+     ScanImageComponent,
+     DigitalSignComponent,
+     SignatureComponent
  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
     NgxSpinnerModule,
-    WebcamModule   
+    WebcamModule,
+    SignaturePadModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
     ServiceUtil

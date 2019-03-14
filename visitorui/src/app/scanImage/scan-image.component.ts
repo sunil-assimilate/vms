@@ -64,30 +64,18 @@ import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
       return new Blob([ia], {type:mimeString});
   }
     
-public convertToBlob(dataURI)
-{
-  var binary = atob(dataURI.split(',')[1]);
-    var array = [];
-    for(var i = 0; i < binary.length; i++) {
-        array.push(binary.charCodeAt(i));
-    }
-    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
-}
-
     public handleImage(webcamImage: WebcamImage): void {
       this.webcamImage = webcamImage;
     
     }
 
     public next() {
-      console.log(this.webcamImage.imageAsDataUrl);
       let image = this.dataURItoBlob(this.webcamImage.imageAsDataUrl);
-     
-      console.log("visitorId: "+ this.visitorId + " type :"+ this.type);
+      
       this.serviceUtil.uploadImage(AppSettings.base_url + ServiceUrl.visitorImage, this.visitorId, this.type,image)
       .subscribe(
         response => {
-          this.route.navigate(['/visitor']);
+          this.route.navigate(['/visitor/digitalSign', this.visitorId,"signature"]);
         });
 
     }

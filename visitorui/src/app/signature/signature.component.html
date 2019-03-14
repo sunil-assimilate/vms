@@ -1,0 +1,16 @@
+<with-navbar></with-navbar>
+<header-main></header-main>
+<div class="container" style="padding-left:45px;">
+<form [formGroup]="form" (submit)="submit()" (window:resize)="beResponsive()">
+    <div fxLayout="row">
+        <button type="button" (click)="clear()" [disabled]="!form.controls.signatureField1.valid">Clear</button>
+        <button type="submit" [disabled]="!form.valid">Submit</button>
+    </div>
+    <div class="sig-container" #sigContainer1>
+        <div fxLayout="row">
+            <app-digital-sign formControlName="signatureField1"></app-digital-sign>
+        </div>
+    </div>
+</form>
+</div>
+

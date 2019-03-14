@@ -73,6 +73,7 @@ export class VisitorDetailComponent implements OnInit {
         if (!response.isError) {
           this.visitor = response.model;
          this.visitor.image = "data:image/jpeg;base64,"+ this.visitor.image;
+         this.visitor.signature ="data:image/jpeg;base64,"+ this.visitor.signature;
           // this.visitor.department = response.model.department;
         } else {
           swal.fire({

@@ -21,6 +21,7 @@ export class Visitor{
     toMeet: Dropdown;
     identityNumber:string;
     image: string;
+    signature: string;
     photoIdType: Dropdown;
     location: Dropdown;
     photoIdPath : string;
