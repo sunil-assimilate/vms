@@ -137,14 +137,11 @@
         <span class="help-block" *ngIf="location.invalid && location.touched"
         style="color:red"> Location is required</span>
       </div>
-    </div>
-
-     
+    </div>     
     <div class="row form-group">
         <label class="col-lg-2"><b>Purpose</b> <span style="color:red">*</span></label>
         <div class="col-lg-4 ">
           <textarea class="form-control border-input" id="txtperpose" rows="2"  [(ngModel)]="visitor.purpose" autocomplete="off" #purpose="ngModel" name="purpose"></textarea>
-
         </div>
       <label class="col-lg-2 "><b>comments:</b> </label>
       <div class="col-lg-4 ">         
