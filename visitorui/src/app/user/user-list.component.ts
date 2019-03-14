@@ -19,7 +19,6 @@ export class UserListComponent implements OnInit {
   //Variables for paging
   pager: any;
   collection = [];
-
   // To reset password
   changePassword: ChangePassword = {
     id: null,
@@ -33,18 +32,19 @@ export class UserListComponent implements OnInit {
     "sortBy": "",
     "pageNumber": 1,
     "pageSize": 10,
-    "text": ""
+    "text": "",
+    "totalCount": 0
   }
   userList: Array<User>;
   constructor(private serviceUtil: ServiceUtil, private route: ActivatedRoute, private router: Router) {
-
     this.pager = {
       currentPage: 1,
-      itemsPerPage: 5
+      itemsPerPage: 5,
+      totalItems:0
     };
-
     this.route.queryParams.subscribe(params => {
-      this.pager.currentPage = params.page;
+      this.pager.currentPage = params.page; 
+      this.loadUserList();
     });
 
     for (let i = 1; i <= 100; i++) {
@@ -57,14 +57,17 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadUserList(this.userSearch);
+    this.loadUserList();
 
   }
   //To fetch user list 
-  loadUserList(search: any) {
-    this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.userList, search).subscribe(
+  loadUserList() {    
+    this.userSearch.pageNumber = this.pager.currentPage;
+    this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.userList, this.userSearch).subscribe(
       response => {
         if (!response.IsError) {
+         // this.userSearch.totalCount = response.TotalCount;
+          this.pager.totalItems = response.totalCount;
           this.userList = response.model;
           console.log(this.userList);
         }
@@ -76,7 +79,7 @@ export class UserListComponent implements OnInit {
   }
   //To search user based on input value in text
   searchUser() {
-    this.loadUserList(this.userSearch);
+    this.loadUserList();
   }
   //To reset user password
   resetPassword(id: string) {

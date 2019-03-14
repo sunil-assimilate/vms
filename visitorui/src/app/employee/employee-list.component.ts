@@ -13,47 +13,46 @@ import swal from 'sweetalert2';
 })
 export class EmployeeListComponent implements OnInit {
 
-  config: any;
-  collection = [];
+  config: any; 
+  pager: any; 
   employeeSearch = {
     "sortType": "ASC",
     "sortBy": "",
     "pageNumber": 1,
-    "pageSize": 10,
-    "text": ""
+    "pageSize": 5,
+    "text": "" ,
+    "totalCount": 0
   }
   employeeList: Array<Employee>;
-
   constructor(private serviceUtil: ServiceUtil, private route: ActivatedRoute, private router: Router) {
-
-    this.config = {
+    this.pager = {
       currentPage: 1,
-      itemsPerPage: 10
+      itemsPerPage:5,     
+      totalItems:0
     };
-
-    this.route.queryParams.subscribe(params => {
-      this.config.currentPage = params.page;
-    });
-
-    for (let i = 1; i <= 100; i++) {
-      this.collection.push(`item ${i}`);
-    }
+      this.route.queryParams.subscribe(params => {
+      this.pager.currentPage = params.page; 
+      this.loadEmployeeList();
+    });  
   }
 
-  pageChange(newPage: number) {
+  pageChange(newPage: number) {   
+    console.log(newPage); 
     this.router.navigate(['/employee'], { queryParams: { page: newPage } });
-
   }
-
   ngOnInit() {
-    this.loadEmployeeList(this.employeeSearch.text);
+    this.loadEmployeeList();
   }
   //To fetch Employee list 
-  loadEmployeeList(search:any) {
+  loadEmployeeList() {
+    this.employeeSearch.pageNumber = this.pager.currentPage;
+    console.log(this.employeeSearch.pageNumber);
     this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.employeeList,this.employeeSearch).subscribe(
       response => {
         if (!response.IsError) {
           console.log("employee list" + response.model)
+          //this.employeeSearch.totalCount = response.totalCount;
+          this.pager.totalItems = response.totalCount;
           this.employeeList = response.model;
         }
         else {
@@ -67,6 +66,6 @@ export class EmployeeListComponent implements OnInit {
   }
   // Filter employee with different field
   searchEmployee() {  
-    this.loadEmployeeList(this.employeeSearch);
+    this.loadEmployeeList();
   }
 }

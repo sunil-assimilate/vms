@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
  isAdmin:boolean;
   constructor() { }
-
   ngOnInit() {
     let user = JSON.parse(localStorage.getItem('user'));     
       if(user.role.toLowerCase()=='security'){
