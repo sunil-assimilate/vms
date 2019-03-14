@@ -51,7 +51,6 @@ namespace Visitor.Repository
                   sortBy = search.SortBy;
                }
             }
-
             _logger.LogInformation(1002, null,"fetched visitors: skip records:{0},number of records: {1}", skip, search.PageSize);
            
            var emailFilter = Builders<entity.Visitor>.Filter.Regex(r => r.Email, "/"+search.Text+"/i");

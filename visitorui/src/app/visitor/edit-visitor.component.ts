@@ -23,12 +23,21 @@ export class EditVisitorComponent implements OnInit {
     states: any;
     locations: any;
     photoIdTypes: any;
+    isAdmin:boolean;
 
     constructor(private serviceUtil: ServiceUtil, private route: Router, private _route: ActivatedRoute) { }
     ngOnInit() {
         this.visitor = new Visitor();
         this.visitorId = this._route.snapshot.params["id"];
         this.getConfiguration();
+        let user = JSON.parse(localStorage.getItem('user'));  
+    if(user.role.toLowerCase()=='security'){
+      this.isAdmin=false;  
+    }
+    else
+    {
+      this.isAdmin=true;  
+    }
     }
 
     getConfiguration() {

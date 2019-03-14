@@ -29,5 +29,7 @@ export class Visitor{
     comment:string;
     inTime?:string;
     outTime:string;
+    checkOut:string;
+    checkIn:string;
 }
  

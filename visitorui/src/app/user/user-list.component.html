@@ -37,7 +37,7 @@
                     <th>Action</th>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let usrList of userList | paginate: pager">
+                    <tr *ngFor="let usrList of userList|paginate: pager">
                       <td>{{usrList.firstName}} </td>
                       <td>{{usrList.lastName}} </td>
                       <td>{{usrList.userName}}</td>

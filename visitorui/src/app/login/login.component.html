@@ -7,8 +7,7 @@
                 <label for="lblusername" class="text-info">User Name:</label><br>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input type="text" name="userName" id="txtUserName" maxlength="20" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" class="form-control border-input"
+                    <input type="text" name="userName" id="txtUserName" maxlength="20" autocomplete="off"  class="form-control border-input"
                         placeholder="Name" [(ngModel)]="authentication.userName" #userName="ngModel" required>
 
                 </div>

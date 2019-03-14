@@ -65,7 +65,7 @@ namespace visitor.service.Controllers
             try
             {
                 if (search.TotalCount == 0)
-                {
+                { 
                     response.TotalCount = _visitorRepository.GetVisitorsCount();
                 }
 

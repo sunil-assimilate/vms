@@ -19,5 +19,7 @@ namespace Visitor.Repository
 
        Task<bool> DeleteEmployee(string id);
        Task<bool> isEmpCodeExists(string empCode);
+
+       long  TotalEmployeeCount();
     }
 } 

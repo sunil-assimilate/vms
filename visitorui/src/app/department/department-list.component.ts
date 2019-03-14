@@ -38,6 +38,9 @@ export class DepartmentListComponent implements OnInit {
   ngOnInit() {
     this.loadDepartment(this.departmentSearch);
   }
+  pageChange(newPage: number) {
+    this.router.navigate(['/department'], { queryParams: { page: newPage } });
+  }
   loadDepartment(search:any) {   
     this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.getDepartmentList,this.departmentSearch)
       .subscribe((response: any) => {

@@ -126,6 +126,11 @@ namespace visitor.service.Controllers
             try
             {
                 _logger.LogInformation(entities.LoggingEvents.ListItems, "respository: {0}", _userRepository);
+
+                if(search.TotalCount==0)
+                {
+                    response.TotalCount=_userRepository.UserTotalCount();
+                }
                 List<User> users = await _userRepository.GetUsers(search);
                 response.Model = users;
                 response.Message = "Listed users successfully";

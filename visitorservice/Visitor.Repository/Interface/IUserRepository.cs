@@ -16,5 +16,7 @@ namespace Visitor.Repository
        Task<User> EditUser(User user);
 
        Task<bool> DeleteUser(string id);
+
+       long UserTotalCount();
     }
 }

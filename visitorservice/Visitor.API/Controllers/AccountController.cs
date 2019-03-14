@@ -25,21 +25,27 @@ namespace visitor.service
         {
             ISingleModelResponse<User> response = new SingleModelResponse<User>();
             string token;
+            try
+            {
 
+             //Log username and password   
             _logger.LogInformation(entities.LoggingEvents.GetItem, null, "Authenticate: UserName - {0} , Password {1}", userParam.UserName, userParam.Password);
-            var user = _userService.Authenticate(userParam.UserName, userParam.Password, out token);
-
+            var user =  _userService.Authenticate(userParam.UserName, userParam.Password, out token);
             if (user == null)
             {
                 response.IsError = true;
-                response.ErrorMessage = "Invalid Username or Password";
-                return BadRequest(response);
+                response.Message = "Invalid Username or Password";
             }
-
             response.Model = user;
             response.Token = token;
-
             return Ok(response);
+            }
+            catch
+            {
+                response.IsError=true;
+                response.ErrorMessage="An error occurred. Please try again";
+                return BadRequest(response);
+            }
         }
 
 
@@ -55,8 +61,8 @@ namespace visitor.service
             if (!result)
             {
                 response.IsError = true;
-                response.ErrorMessage = "Could not update password";
-                return BadRequest(response);
+                response.Message = "Could not update password";
+                //return BadRequest(response);
             }
 
 
@@ -78,8 +84,8 @@ namespace visitor.service
             if (!result)
             {
                 response.IsError = true;
-                response.ErrorMessage = "Could not update password";
-                return BadRequest(response);
+                response.Message = "Could not reset password";
+               // return BadRequest(response);
             }
 
             response.Model = passwordReset;

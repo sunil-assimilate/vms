@@ -37,7 +37,7 @@
                     <th>Action</th>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let emplist of employeeList | paginate: config">
+                    <tr *ngFor="let emplist of employeeList|paginate: pager">
                       <td>{{emplist.empCode}}</td>
                       <td>{{emplist.firstName}}</td>
                       <td>{{emplist.lastName}}</td>

@@ -62,6 +62,12 @@ namespace visitor.service.Controllers
             try
             {
                 _logger.LogInformation(entities.LoggingEvents.ListItems, "respository: {0}", _employeeRepository);
+               
+               if(search.TotalCount==0)
+               {                 
+                 response.TotalCount=_employeeRepository.TotalEmployeeCount();
+                 _logger.LogInformation(20001, null,"nitin is result:{0}", response.TotalCount);
+               }
                 List<Employee> employees = await _employeeRepository.GetEmployees(search);
                 response.Model = employees;
                 response.Message = "Listed employees successfully";

@@ -5,15 +5,18 @@ using System.Threading.Tasks;
 using MongoDB.Driver;
 using Visitor.Entity;
 using MongoDB.Bson;
+using Microsoft.Extensions.Logging;
 
 namespace Visitor.Repository
 {
     public class EmployeeRepository : IEmployeeRepository
     {
         private readonly IVisitorContext _visitorContext = null;
+   private readonly ILogger _logger = null;
 
-        public EmployeeRepository(IVisitorContext visitorContext)
+        public EmployeeRepository(IVisitorContext visitorContext, ILogger<EmployeeRepository> logger)
         {
+            this._logger = logger;
             _visitorContext = visitorContext;
         }
 
@@ -68,26 +71,38 @@ namespace Visitor.Repository
         {
             int skip;
             int type;
-            string sortBy;
-            
-            if(search == null || search.PageNumber == 0 || String.IsNullOrEmpty(search.SortBy))
+            string sortBy;            
+            if(search == null || search.PageNumber == 0 || String.IsNullOrEmpty(search.SortType))
             {
                skip =0;
                type =1;
-               sortBy = "FirstName";
+               sortBy = "empCode";
             }
             else 
             {
-               skip = search.PageNumber == 0 ? 0: search.PageNumber * search.PageSize - 1;
-               type = search.SortBy == "ASC" ? 1 : -1;
-               sortBy = search.SortBy;
+               skip = search.PageNumber < 2 ? 0: (search.PageNumber -1) * (search.PageSize) ;         
+               type = search.SortBy == "ASC" ? 1 : -1;            
+                if(string.IsNullOrEmpty(search.SortBy))
+               {
+                  sortBy = "empCode";
+               }
+               else
+               {
+                  sortBy = search.SortBy;
+               }
             }
 
+            _logger.LogInformation(123212,null,"skipping records: {0}", skip);
            var firstNameFilter = Builders<Employee>.Filter.Regex(r => r.FirstName, "/"+search.Text+"/i");
            var lastNameFilter = Builders<Employee>.Filter.Regex(r => r.LastName, "/"+search.Text+"/i");
            var emailFilter = Builders<Employee>.Filter.Regex(r => r.Email, "/"+search.Text+"/i");
  
            return await _visitorContext.Employees.Find(firstNameFilter | lastNameFilter | emailFilter).Sort(new BsonDocument(sortBy,type)).Skip(skip).Limit(search.PageSize).ToListAsync();    
         }
+
+        public long TotalEmployeeCount()
+        {
+            return _visitorContext.Employees.CountDocuments(new BsonDocument());
+        }
     }
-}
+};

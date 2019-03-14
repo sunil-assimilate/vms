@@ -25,6 +25,7 @@ export class VisitorListComponent implements OnInit {
   pager: any; 
   searchText: string;
   visitorList: Array<Visitor>;
+  isAdmin:boolean;
   constructor(private serviceUtil: ServiceUtil, private route: Router, private _route: ActivatedRoute) {
     this.pager = {
       currentPage: 1,
@@ -32,28 +33,37 @@ export class VisitorListComponent implements OnInit {
       totalItems:0
     };
     this.visitorList = new Array<Visitor>();
-  
-
     this._route.queryParams.subscribe(params => {
+      console.log("subscribe called");
       this.pager.currentPage = params.page;
       this.getVisitors();
     });
   }
 
   pageChange(newPage: number) {
+    console.log("page change called"+ newPage);
+
     this.route.navigate(['/visitor'], { queryParams: { page: newPage } });
   }
   ngOnInit() { 
+      console.log("ngonelint cll");
     this.getVisitors();
+    let user = JSON.parse(localStorage.getItem('user'));  
+    if(user.role.toLowerCase()=='security'){
+      this.isAdmin=false;  
+    }
+    else
+    {
+      this.isAdmin=true;  
+    }
   }
-
   getVisitors() { 
     this.search.pageNumber = this.pager.currentPage;
     this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.visitorList, this.search)
       .subscribe(
         response => {
           if (!response.IsError) {
-            this.search.totalCount = response.TotalCount;
+            // this.search.totalCount = response.TotalCount;
             this.pager.totalItems = response.totalCount;
             this.visitorList =response.model;
           }
@@ -77,12 +87,10 @@ export class VisitorListComponent implements OnInit {
             this.visitorList = response.model;
           }
           else {
-
           }
         }
       )
   }
-
   searchVisitor() {
     this.search.Text = this.searchText;
     this.getVisitors();

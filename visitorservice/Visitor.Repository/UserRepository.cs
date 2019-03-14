@@ -25,15 +25,15 @@ namespace Visitor.Repository
             int type;
             string sortBy;
 
-            if (search == null || search.PageNumber == 0 || String.IsNullOrEmpty(search.SortType))
+           if(search == null || search.PageNumber == 0 || String.IsNullOrEmpty(search.SortType))
             {
-                skip = 0;
-                type = 1;
-                sortBy = "FirstName";
+               skip =0;
+               type =1;
+               sortBy = "FirstName";
             }
             else
-            {
-                skip = search.PageNumber == 0 ? 0 : search.PageNumber * search.PageSize - 1;
+            {            
+                skip = search.PageNumber < 2 ? 0: (search.PageNumber -1) * (search.PageSize)   ;
                 type = search.SortType == "ASC" ? 1 : -1;
                 if (String.IsNullOrEmpty(search.SortBy))
                 {
@@ -86,7 +86,6 @@ namespace Visitor.Repository
                 throw ex;
             }
         }
-
         public async Task<User> EditUser(User user)
         {
             user.LastModifiedOn = DateTime.Now;
@@ -96,7 +95,6 @@ namespace Visitor.Repository
             {
                 // throw the error that employee not found.
             }
-
             return user;
         }
 
@@ -116,6 +114,11 @@ namespace Visitor.Repository
                 // log or manage the exception
                 throw ex;
             }
+        }
+
+        public long UserTotalCount()
+        {
+            return  _visitorContext.Users.CountDocuments(new BsonDocument());
         }
 
     }
