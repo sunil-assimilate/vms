@@ -39,7 +39,7 @@
                             <td>{{role.name}}</td>
                             <td>{{role.type=="PDF"?"Pre-defined":'User-defined'}}</td> 
                             <td>{{role.createdOn |date:'MM/dd/yyyy'}}</td>    
-                            <td><button class="btn"><a [routerLink]="['edit',role.id]" style="cursor:pointer;" title="Click here to edit"><i class="fa fa-edit" aria-hidden="true"></i></a></button></td>
+                            <td><button class="btn"><a [routerLink]="['edit',role.id]"  style="cursor:pointer;" title="Click here to edit"><i class="fa fa-edit" aria-hidden="true"></i></a></button></td>
                         </tr>             
                       </tbody>
                   </table>

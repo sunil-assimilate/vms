@@ -10,7 +10,7 @@
           <div class="row form-group">
               <label class="col-lg-2 ">Employee Code<span style="color:red">*</span></label>
               <div class="col-lg-4 ">
-                <input id="txtempcode" class="form-control border-input" placeholder="Employee Code" type="text"
+                <input id="txtempcode" class="form-control border-input" placeholder="Employee Code" type="text" 
                   maxlength="10" name="empCode" [(ngModel)]="employee.empCode" #empCode="ngModel" required
                   autocomplete="off" />
                 <span class="help-block" *ngIf="empCode.invalid && empCode.touched" style="color:red">Employee Code
@@ -21,7 +21,7 @@
         <div class="row form-group">
           <label class="col-lg-2 ">First Name<span style="color:red">*</span></label>
           <div class="col-lg-4 ">
-            <input required id="txtFirstName" name="firstName" class="form-control border-input" maxlength="15"
+            <input required id="txtFirstName" name="firstName" class="form-control border-input" maxlength="15"  (keypress)="alphabetsOnly($event)"
               placeholder="First Name" type="text" [(ngModel)]="employee.firstName" #firstName="ngModel"
               autocomplete="off" />
             <span class="help-block" *ngIf="firstName.invalid && firstName.touched" style="color:red">First Name is
@@ -31,7 +31,7 @@
         <div class="row form-group">
           <label class="col-lg-2 ">Last Name<span style="color:red">*</span></label>
           <div class="col-lg-4 ">
-            <input required type="text" id="txtlastname" name="lastName" class="form-control border-input"
+            <input required type="text" id="txtlastname" name="lastName" class="form-control border-input"  (keypress)="alphabetsOnly($event)"
               placeholder="Last Name" [(ngModel)]="employee.lastName" #lastName="ngModel" autocomplete="off"
               maxlength="15" />
             <span class="help-block" *ngIf="lastName.invalid && lastName.touched" style="color:red">Last Name is
@@ -42,7 +42,7 @@
         <div class="row form-group">
           <label class="col-lg-2 ">Contact No<span style="color:red">*</span></label>
           <div class="col-lg-4 ">
-            <input required type="text" id="txtcell" name="mobile" class="form-control border-input"
+            <input required type="text" id="txtcell" name="mobile" class="form-control border-input" (keypress)="numberOnly($event)"
               placeholder="Mobile" [(ngModel)]="employee.cell" #cell="ngModel" maxlength="10" autocomplete="off">
             <span class="help-block" *ngIf="cell.invalid && cell.touched" style="color:red">Contact No is
               required</span>
@@ -73,7 +73,7 @@
 
       <div class="panel-footer">
         <div>
-          <input type="submit" value="Save" class="btn btn-info btn-fill btn-wd"> &nbsp;
+          <input type="submit" value="Save" class="btn btn-info btn-primary-outline btn-wd" > &nbsp;
           <input type="button" value="Cancel" class="btn btn-info btn-primary-outline btn-wd" routerLink="/employee">
         </div>
 

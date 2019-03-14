@@ -56,7 +56,13 @@ export class EmployeeAddComponent implements OnInit {
     return false;
   }
   return true;
-
+}
+alphabetsOnly(event): boolean {
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)) {
+    return true;
+  }
+  return false;
 }
  //To add a Employee
  createEmployee(newEmployee: Employee) { 
@@ -84,6 +90,7 @@ export class EmployeeAddComponent implements OnInit {
 // to reset contrl
 resetControl()
 {
+  this.employee.empCode=null;
   this.employee.firstName=null;
   this.employee.lastName=null;
   this.employee.cell=null;

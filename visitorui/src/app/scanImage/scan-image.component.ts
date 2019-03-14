@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ServiceUtil } from '../infrastructure/service/serviceUtil.sevice'
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppSettings } from '../infrastructure/appsettings';
-
 import { ServiceUrl } from '../infrastructure/service/serviceUrls.service';
-import { Subject } from 'rxjs';
-import { Observable } from 'rxjs';
-
-import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
+import { Subject,Observable } from 'rxjs';
+import {WebcamImage} from 'ngx-webcam';
 
 @Component({
     selector: 'app-scan-image',
@@ -21,23 +18,28 @@ import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
     public image: string;
     private visitorId: string;
     private type: string;
+    private isAdmin:boolean;
 
     // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceI
     
     constructor(private serviceUtil: ServiceUtil, private route: Router, private _route: ActivatedRoute)
     {
     }
-
     ngOnInit()
     {
       this.visitorId = this._route.snapshot.params["id"];
       this.type = this._route.snapshot.params["type"];
+      let user = JSON.parse(localStorage.getItem('user'));  
+      if(user.role.toLowerCase()=='security'){
+        this.isAdmin=false;  
+      }
+      else
+      {
+        this.isAdmin=true;  
+      }
     }
-
     public get triggerObservable(): Observable<void> {
-
-      return this.trigger.asObservable();
-  
+      return this.trigger.asObservable();  
     }
 
     public triggerSnapshot(): void {
@@ -59,8 +61,7 @@ import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
       var ia = new Uint8Array(byteString.length);
       for (var i = 0; i < byteString.length; i++) {
           ia[i] = byteString.charCodeAt(i);
-      }
-  
+      }  
       return new Blob([ia], {type:mimeString});
   }
     

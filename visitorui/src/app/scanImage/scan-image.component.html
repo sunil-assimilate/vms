@@ -1,4 +1,9 @@
-<with-navbar></with-navbar>
+<div *ngIf=isAdmin>
+	<with-navbar></with-navbar>
+  </div>
+  <div *ngIf=!isAdmin>
+	<gaurd-navbar></gaurd-navbar>
+  </div>
 <header-main></header-main>
 <div class="container" style="padding-left:45px;">
 <div class="width=300; height=200">
