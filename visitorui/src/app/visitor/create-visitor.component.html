@@ -78,7 +78,7 @@
           </div>
           <label class="col-lg-2"><b>Zip Code:</b> </label>
           <div class="col-lg-4 ">
-            <input id="txtzipcode" class="form-control border-input" (keypress)="numberOnly($event)" placeholder="Zip Code" autocomplete="off" maxlength="10"
+            <input id="txtzipcode" class="form-control border-input" (keypress)="numberOnly($event)" placeholder="Zip Code" autocomplete="off" maxlength="6"
               [(ngModel)]="visitor.zipCode" #zipCode="ngModel" type="text" name="zipCode" />
           </div>
         </div>
