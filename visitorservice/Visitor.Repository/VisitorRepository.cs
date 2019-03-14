@@ -35,16 +35,16 @@ namespace Visitor.Repository
             {
                skip =0;
                type =1;
-               sortBy = "FirstName";
+               sortBy = "LastModifiedOn";
             }
             else 
             {
                skip = search.PageNumber < 2 ? 0: (search.PageNumber -1) * (search.PageSize  ) ;
-               type = search.SortBy == "ASC" ? 1 : -1;
+               type = search.SortBy == "Desc" ? 1 : -1;
 
                if(string.IsNullOrEmpty(search.SortBy))
                {
-                  sortBy = "FirstName";
+                  sortBy = "LastModifiedOn";
                }
                else
                {

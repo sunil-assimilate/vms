@@ -7,6 +7,7 @@ import { ServiceUrl } from '../infrastructure/service/serviceUrls.service';
 import { CommonUtil } from '../infrastructure/commonutil.component';
 import { ServiceUtil } from '../infrastructure/service/serviceUtil.sevice';
 import swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class EmployeeAddComponent implements OnInit {
      department:null,
      empCode:null
   }
-  constructor(private serviceUtil: ServiceUtil, private route: Router) { }
+  constructor(private serviceUtil: ServiceUtil, private route: Router,private spinner:NgxSpinnerService) { }
   ngOnInit() {
     this.bindDepartment();
   }
@@ -66,8 +67,10 @@ alphabetsOnly(event): boolean {
 }
  //To add a Employee
  createEmployee(newEmployee: Employee) { 
+  this.spinner.show();
   this.serviceUtil.postData(AppSettings.base_url + "employee", this.employee)
     .subscribe((response: any) => {
+      this.spinner.hide();
       if (!response.isError) {        
         swal.fire({ type: 'success', text: response.message, showCancelButton: false, confirmButtonText: 'OK' })
           .then((result) => {
@@ -78,6 +81,7 @@ alphabetsOnly(event): boolean {
           });
       }       
       else {
+        this.spinner.hide();
         swal.fire({
           type: 'error', text: response.message, showCancelButton: false,
           confirmButtonText: 'OK'
@@ -97,7 +101,6 @@ resetControl()
   this.employee.email=null;  
   this.employee.department=null;
 }
-
 selected(){
   console.log(this.employee);
 }

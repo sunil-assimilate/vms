@@ -19,7 +19,7 @@ export class EmployeeListComponent implements OnInit {
     "sortType": "ASC",
     "sortBy": "",
     "pageNumber": 1,
-    "pageSize": 5,
+    "pageSize": 10,
     "text": "" ,
     "totalCount": 0
   }
@@ -27,7 +27,7 @@ export class EmployeeListComponent implements OnInit {
   constructor(private serviceUtil: ServiceUtil, private route: ActivatedRoute, private router: Router) {
     this.pager = {
       currentPage: 1,
-      itemsPerPage:5,     
+      itemsPerPage:10,     
       totalItems:0
     };
       this.route.queryParams.subscribe(params => {
