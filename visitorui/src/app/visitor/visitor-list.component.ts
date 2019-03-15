@@ -15,7 +15,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class VisitorListComponent implements OnInit {
   search = {
-    "sortType": "ASC",
+    "sortType": "DESC",
     "sortBy": "",
     "pageNumber": 1,
     "pageSize": 10,

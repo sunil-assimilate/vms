@@ -33,14 +33,14 @@ namespace Visitor.Repository
             
             if(search ==null || search.PageNumber == 0 || String.IsNullOrEmpty(search.SortType))
             {
-               skip =0;
-               type =1;
+               skip = 0;
+               type = -1;
                sortBy = "LastModifiedOn";
             }
             else 
             {
-               skip = search.PageNumber < 2 ? 0: (search.PageNumber -1) * (search.PageSize  ) ;
-               type = search.SortBy == "Desc" ? 1 : -1;
+               skip = search.PageNumber < 2 ? 0: (search.PageNumber -1) * (search.PageSize) ;
+               type = search.SortType == "DESC" ? -1 : 1;
 
                if(string.IsNullOrEmpty(search.SortBy))
                {
@@ -51,7 +51,6 @@ namespace Visitor.Repository
                   sortBy = search.SortBy;
                }
             }
-            _logger.LogInformation(1002, null,"fetched visitors: skip records:{0},number of records: {1}", skip, search.PageSize);
            
            var emailFilter = Builders<entity.Visitor>.Filter.Regex(r => r.Email, "/"+search.Text+"/i");
            var addressFilter = Builders<entity.Visitor>.Filter.Regex(r => r.Address, "/"+search.Text+"/i");
