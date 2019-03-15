@@ -18,10 +18,8 @@ import {WebcamImage} from 'ngx-webcam';
     public image: string;
     private visitorId: string;
     private type: string;
-    private isAdmin:boolean;
-
-    // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceI
-    
+    isAdmin:boolean;
+    // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceI    
     constructor(private serviceUtil: ServiceUtil, private route: Router, private _route: ActivatedRoute)
     {
     }
