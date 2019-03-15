@@ -19,7 +19,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 
   export class DigitalSignComponent implements ControlValueAccessor {
     @ViewChild(SignaturePad) public signaturePad : any;
-     private signaturePadOptions:any;
+      signaturePadOptions:any;
 
 
 
