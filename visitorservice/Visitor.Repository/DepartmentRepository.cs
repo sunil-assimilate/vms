@@ -52,17 +52,24 @@ namespace Visitor.Repository
             {
                 skip = 0;
                 type = 1;
-                sortBy = "FirstName";
+                sortBy = "name";
             }
             else
             {
-                skip = search.PageNumber > 2 ? search.PageNumber-1 : search.PageSize;
-                type = search.SortBy == "ASC" ? 1 : -1;
-                sortBy = search.SortBy;
+                skip = search.PageNumber < 2 ? 0: (search.PageNumber -1) * (search.PageSize) ;         
+               type = search.SortBy == "ASC" ? 1 : -1;            
+                if(string.IsNullOrEmpty(search.SortBy))
+               {
+                  sortBy = "name";
+               }
+               else
+               {
+                  sortBy = search.SortBy;
+               }
             }
                var nameFilter = Builders<Department>.Filter.Regex(r => r.Name, "/"+search.Text+"/i");
                var codefilter=Builders<Department>.Filter.Regex(r=>r.Code,"/"+search.Text+"/i");
-            return await _visitorContext.Departments.Find(nameFilter| codefilter).Sort(new BsonDocument(sortBy, type)).Skip(skip).Limit(search.PageSize).ToListAsync();
+               return await _visitorContext.Departments.Find(nameFilter| codefilter).Sort(new BsonDocument(sortBy, type)).Skip(skip).Limit(search.PageSize).ToListAsync();
         }
 
          public async Task<List<Department>> GetDepartments()

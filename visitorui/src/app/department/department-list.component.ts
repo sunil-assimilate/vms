@@ -36,12 +36,14 @@ export class DepartmentListComponent implements OnInit {
     }  
   }   
   ngOnInit() {
-    this.loadDepartment(this.departmentSearch);
+    this.loadDepartment();
   }
   pageChange(newPage: number) {
     this.router.navigate(['/department'], { queryParams: { page: newPage } });
   }
-  loadDepartment(search:any) {   
+  loadDepartment() { 
+
+  console.log(AppSettings.base_url + ServiceUrl.getDepartmentList+this.departmentSearch);
     this.serviceUtil.postData(AppSettings.base_url + ServiceUrl.getDepartmentList,this.departmentSearch)
       .subscribe((response: any) => {
         if (!response.isError) {
@@ -60,6 +62,6 @@ export class DepartmentListComponent implements OnInit {
   }  
 // Search role
 searchDepartment(){  
-  this.loadDepartment(this.departmentSearch);
+  this.loadDepartment();
 }
 }
