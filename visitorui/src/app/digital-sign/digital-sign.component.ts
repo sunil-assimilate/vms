@@ -21,8 +21,6 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
     @ViewChild(SignaturePad) public signaturePad : any;
       signaturePadOptions:any;
 
-
-
     constructor(private serviceUtil: ServiceUtil, private route: Router, private _route: ActivatedRoute)
     {
       this.signaturePadOptions = { // passed through to szimek/signature_pad constructor
