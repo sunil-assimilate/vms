@@ -2,15 +2,36 @@
 <header-main></header-main>
 <div class="container" style="padding-left:45px;">
 <form [formGroup]="form" (submit)="submit()" (window:resize)="beResponsive()">
-    <div fxLayout="row">
-        <button type="button" (click)="clear()" [disabled]="!form.controls.signatureField1.valid">Clear</button>
-        <button type="submit" [disabled]="!form.valid">Submit</button>
-    </div>
+        <div class="panel panel-default">
+                <div class="panel-heading">
+                <div class="panel-title">Take Signature</div>
+              </div>
+                
+              <div class="panel-body">
+   
+
+    <div class="row">
+            <div class="col-xs-6">
     <div class="sig-container" #sigContainer1>
         <div fxLayout="row">
             <app-digital-sign formControlName="signatureField1"></app-digital-sign>
         </div>
     </div>
+    </div>
+</div>
+<div class="col-xs-12">&nbsp;</div>
+
+<div  fxLayout="row" class="row">
+        <div class="col-xs-1">
+        <button type="button" (click)="clear()" [disabled]="!form.controls.signatureField1.valid" class="btn btn-info btn-fill">Clear</button>
+    </div>
+    <div class="col-xs-11">
+        <button type="submit" [disabled]="!form.valid" class="btn btn-info btn-fill">Submit</button>
+    </div>
+    </div>
+    </div>
+</div>
+    
 </form>
 </div>
 

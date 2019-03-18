@@ -166,6 +166,32 @@ div#multiple{
     cursor: pointer;
 } 
  
+.webcam-wrapper {
+    display: inline-block;
+    position: relative;
+    line-height: 0;
+    max-width: 600px;
+    max-height: 230px;
+}
+
+.webcam-wrapper video {
+    max-width:300px;
+    max-height: 230px;
+    
+}
+
+.scan-image
+{
+    max-width:300px;
+    max-height: 300px;
+}
+
+app-digital-sign canvas, .sig-container{
+
+    max-width: 600px;
+    max-height: 300px;
+    border-radius: 40px;
+}
 
 
 

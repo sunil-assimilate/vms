@@ -6,15 +6,44 @@
   </div>
 <header-main></header-main>
 <div class="container" style="padding-left:45px;">
-<div class="width=300; height=200">
-<webcam (imageCapture)="handleImage($event)" [trigger]="triggerObservable"></webcam>
-<br/>
+ <div class="panel panel-default">
+  <div class="panel-heading">
+  <div class="panel-title">Take Snapshot</div>
 </div>
-<button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
-<br/>
-<button class="actionBtn" (click)="next();">Next</button>
+  
+<div class="panel-body">
+<div class="row">
+    <div class="col-xs-4">
+  <webcam (imageCapture)="handleImage($event)" [trigger]="triggerObservable"></webcam>
+</div>
 
-<div>
-	<img [src]="webcamImage.imageAsDataUrl" />
+<div class="col-xs-6">
+    <img [src]="webcamImage.imageAsDataUrl" class="scan-image" />
 </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+      &nbsp;
+      </div>
+</div>
+
+<div class="row">
+<div class="col-xs-2">
+<button class="btn btn-info btn-fill " (click)="triggerSnapshot();">Take A Snapshot</button>
+</div>
+<div class="col-xs-6">
+<button class="btn btn-info btn-fill " (click)="next();">Next</button>
+</div>
+</div>
+</div>
+
+	
+
+
+</div>
+
+
+
+
 </div>
