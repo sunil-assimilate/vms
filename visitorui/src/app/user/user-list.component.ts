@@ -38,7 +38,7 @@ export class UserListComponent implements OnInit {
   constructor(private serviceUtil: ServiceUtil, private route: ActivatedRoute, private router: Router) {
     this.pager = {
       currentPage: 1,
-      itemsPerPage: 5,
+      itemsPerPage: 10,
       totalItems:0
     };
     this.route.queryParams.subscribe(params => {
